@@ -1,4 +1,4 @@
 *.pdf
 .vs/
-/bin/
-/obj/
+obj/
+bin/
