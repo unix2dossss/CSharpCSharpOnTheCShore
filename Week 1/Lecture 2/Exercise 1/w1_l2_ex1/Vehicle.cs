@@ -17,6 +17,7 @@ namespace w1_l2_ex1
             Console.WriteLine($"Make: {Make}");
             Console.WriteLine($"Model: {Model}");
             Console.WriteLine($"Year: {Year}");
+            Console.WriteLine();
         }
     }
 }
