@@ -13,5 +13,15 @@ namespace w1_l1_ex2
         public int Age { get; set; }
         public string Gender { get; set; }
         public string Department { get; set; }
+
+        public void PrintDetails(int studentNumber)
+        {
+            Console.WriteLine($"Student {studentNumber} Details:");
+            Console.WriteLine($"First Name: {FirstName}");
+            Console.WriteLine($"Last Name: {LastName}");
+            Console.WriteLine($"Age: {Age}");
+            Console.WriteLine($"Gender: {Gender}");
+            Console.WriteLine($"Department: {Department}\n");
+        }
     }
 }

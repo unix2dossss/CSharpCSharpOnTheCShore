@@ -30,5 +30,9 @@ class Program
             Gender = "Male",
             Department = "Computer Systems"
         };
+
+        student1.PrintDetails(1);
+        student2.PrintDetails(2);
+        student3.PrintDetails(3);
     }
 }
