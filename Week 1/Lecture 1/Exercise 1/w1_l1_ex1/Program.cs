@@ -8,5 +8,13 @@ class Program
         MobilePhone Phone2 = new MobilePhone() { Brand = "Samsung", Model="Galaxy S23 Ultra", StorageCapacity=256, RAM=12, DisplaySize=6.8, Price=999.99m };
         MobilePhone Phone3 = new MobilePhone() { Brand = "Google", Model="Pixel 7", StorageCapacity=128, RAM=8, DisplaySize = 6.3, Price = 699.99m };
 
+        Console.WriteLine("Mobile Phone 1 Details:");
+        Phone1.PrintDetails();
+
+        Console.WriteLine("\nMobile Phone 2 Details:");
+        Phone2.PrintDetails();
+
+        Console.WriteLine("\nMobile Phone 3 Details:");
+        Phone3.PrintDetails();
     }
 }

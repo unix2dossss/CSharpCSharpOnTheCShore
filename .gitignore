@@ -1,2 +1,4 @@
 *.pdf
 .vs/
+/bin/
+/obj/
