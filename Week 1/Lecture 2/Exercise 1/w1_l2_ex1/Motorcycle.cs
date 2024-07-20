@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace w1_l2_ex1
 {
-    internal class Motorcycle
+    internal class Motorcycle: Vehicle
     {
         public double EngineSize { get; set; }
         
