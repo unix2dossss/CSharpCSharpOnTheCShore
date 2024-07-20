@@ -36,5 +36,10 @@ namespace w1_l2_ex2.Data
         {
             return bookStore;
         }
+
+        public void AddBook(Book book)
+        {
+            bookStore.Add(book);
+        }
     }
 }

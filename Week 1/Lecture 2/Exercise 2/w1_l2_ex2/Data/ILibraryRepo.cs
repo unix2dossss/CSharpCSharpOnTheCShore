@@ -10,5 +10,7 @@ namespace w1_l2_ex2.Data
     internal interface ILibraryRepo
     {
         public IEnumerable<Book> GetBooks();
+
+        public void AddBook(Book book);
     }
 }
