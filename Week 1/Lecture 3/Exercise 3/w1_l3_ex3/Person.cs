@@ -8,7 +8,7 @@ namespace w1_l3_ex3
 {
     internal class Person
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int Age { get; set; }
     }
 }
