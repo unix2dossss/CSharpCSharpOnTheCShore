@@ -32,6 +32,7 @@ class Program
 
     public static int PerformOperation(Operation x, int a, int b) { 
         int output = x(a, b);
+
         return output;
     }
 }
