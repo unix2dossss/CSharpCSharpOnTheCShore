@@ -19,4 +19,9 @@ class Program
     public static int Addition(int a, int b) { return a + b; }
     
     public static int Subtraction(int a, int b) { return a - b; }
+
+    public static int PerformOperation(Operation x, int a, int b) { 
+        int output = x(a, b);
+        return output;
+    }
 }
