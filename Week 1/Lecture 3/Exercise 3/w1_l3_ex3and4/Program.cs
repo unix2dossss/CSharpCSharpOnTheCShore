@@ -4,6 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
+
+        // Exercise 3
         List<Person> people = new List<Person>();
         Person vandan = new Person() { Name = "Vandan", Age = 19 };
         Person riddhi = new Person() { Name = "Riddhi", Age = 24 };
@@ -23,5 +25,11 @@ class Program
         {
             Console.WriteLine("No person found with age greater than 30.");
         }
+
+
+        // Exercise 4
+        List<int> numberList = new List<int>() { 1, 3, 5, 7, 92 };
+        int output = numberList.FirstOrDefault<int>(e => (e > 20) && (e % 2 == 0), -1);
+        Console.WriteLine(output);
     }
 }
