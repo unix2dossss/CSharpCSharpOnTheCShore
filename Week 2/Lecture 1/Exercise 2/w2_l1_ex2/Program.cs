@@ -6,11 +6,15 @@ class Program
     {
         List<Employee> employees = new List<Employee>()
         {
-            new Employee() {Name="Vandan", Department="D1", Salary=40000},
-            new Employee() {Name="Charan", Department="D2", Salary=55000},
-            new Employee() {Name="Sai", Department="D3", Salary=60000},
+            new Employee() {Name="Vandan", Department="IT", Salary=40000},
+            new Employee() {Name="Charan", Department="Sales", Salary=55000},
+            new Employee() {Name="Sai", Department="Sales", Salary=60000},
         };
 
+        IEnumerable<Employee> salesOver50k = employees.Where<Employee>(e => (e.Department == "Sales") && (e.Salary > 50000));
 
+        foreach (Employee e in salesOver50k) {
+            Console.WriteLine($"Name: {e.Name}, Department: {e.Department}, Salary: ${e.Salary}");
+        }
     }
 }
