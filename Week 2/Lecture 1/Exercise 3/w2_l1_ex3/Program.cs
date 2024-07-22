@@ -4,6 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        List<Person> people = new List<Person>()
+        {
+            new Person(){Name="Alice", Role="Manager", Age=19},
+            new Person(){Name="Bob", Role="Developer", Age=43},
+            new Person(){Name="Charlie", Role="Designer", Age=23},
+            new Person(){Name="Alice", Role="Analyst", Age=36},
+            new Person(){Name="Eve", Role="Tester", Age=61},
+        };
     }
 }
