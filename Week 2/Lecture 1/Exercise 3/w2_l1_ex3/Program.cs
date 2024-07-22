@@ -12,5 +12,12 @@ class Program
             new Person(){Name="Alice", Role="Analyst", Age=36},
             new Person(){Name="Eve", Role="Tester", Age=61},
         };
+
+        var mapping = people.Select(e => new {Name=e.Name, Role=e.Role});
+
+        foreach (var person in mapping)
+        {
+            Console.WriteLine($"Name: {person.Name}, Role: {person.Role}");
+        }
     }
 }
