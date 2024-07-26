@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace w2_l5_ex1
+namespace w2_l5_ex1.Model
 {
     internal class Product
     {
