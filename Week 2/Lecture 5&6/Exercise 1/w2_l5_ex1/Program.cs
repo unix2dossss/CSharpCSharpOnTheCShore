@@ -13,10 +13,18 @@ class Program
 
     static void CreateProduct(Product product)
     {
-        using (ProductDbContext dbContext = new ProductDbContext())
+        using (var dbContext = new ProductDbContext())
         {
             dbContext.Products.Add(product);
             dbContext.SaveChanges();
+        }
+    }
+
+    static IEnumerable<Product> GetProducts()
+    {
+        using (var dbContext = new ProductDbContext())
+        {
+            return dbContext.Products.ToList();
         }
     }
 }
