@@ -10,9 +10,9 @@ namespace w2_l5_ex2.Model
     internal class Course
     {
         [Key]
-        int Id { get; set; }
-        string Title { get; set; }
-        int Points { get; set; }
-        string Department { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public int Points { get; set; }
+        public string Department { get; set; }
     }
 }
