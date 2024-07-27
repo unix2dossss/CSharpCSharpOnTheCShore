@@ -8,6 +8,7 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
+        CreateProduct(new Product() { ID = 1, Name = "Gaming Mouse", Category = "Electronics", Brand = "Logitech" });
     }
 
     static void CreateProduct(Product product)
