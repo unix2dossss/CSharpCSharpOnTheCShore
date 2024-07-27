@@ -9,6 +9,9 @@ class Program
     {
         Console.WriteLine("Hello, World!");
         CreateProduct(new Product() { ID = 1, Name = "Gaming Mouse", Category = "Electronics", Brand = "Logitech" });
+
+        IEnumerable<Product> products = GetProducts();
+        foreach (Product p in products) Console.WriteLine($"{p.ID}, {p.Brand}, {p.Name}, {p.Category}");
     }
 
     static void CreateProduct(Product product)
