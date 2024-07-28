@@ -15,7 +15,7 @@ class Program
         }
 
         UpdateStudent(new Student { Id = 1, FirstName = "Vandan", LastName = "Bhatt", Address = "Auckland, Papatoetoe" });
-        DeleteStudent(new Student { Id = 1, FirstName = "Vandan", LastName = "Bhatt", Address = "Auckland, Papatoetoe" });
+        DeleteStudent(new Student { Id = 6, FirstName = "Vandan", LastName = "Bhatt", Address = "Auckland, Papatoetoe" });
 
         students = GetStudents();
         foreach (var student in students)
@@ -71,8 +71,16 @@ class Program
     {
         using (var dbContext = new StudentDbContext())
         {
-            dbContext.Students.Remove(student);
-            dbContext.SaveChanges();
+            var s = dbContext.Students.FirstOrDefault<Student>(s => s.Id == student.Id);
+            if (s != null)
+            {
+                dbContext.Students.Remove(student);
+                dbContext.SaveChanges();
+            } else
+            {
+                Console.WriteLine($"Student with ID {student.Id} does not exist!");
+            }
+
         }
     }
 }
