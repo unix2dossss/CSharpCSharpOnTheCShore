@@ -79,6 +79,9 @@ class Program
             {
                 dbContext.Products.Remove(selected_product);
                 dbContext.SaveChanges();
+            } else
+            {
+                Console.WriteLine("No such product to delete!");
             }
         }
     }
