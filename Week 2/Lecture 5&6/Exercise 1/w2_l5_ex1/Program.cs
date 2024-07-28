@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using w2_l5_ex1.Data;
 using w2_l5_ex1.Model;
 
@@ -8,8 +9,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        //CreateProduct(new Product() { ID = 2, Name = "Gaming Mouse", Category = "Electronics", Brand = "Logitech" });
-        //CreateProduct(new Product() { ID = 3, Name = "Gaming Keyboard", Category = "Electronics", Brand = "Logitech" });
+        CreateProduct(new Product() { ID = 1, Name = "Gaming Mouse", Category = "Electronics", Brand = "Logitech" });
+        CreateProduct(new Product() { ID = 2, Name = "Gaming Keyboard", Category = "Electronics", Brand = "Logitech" });
+        CreateProduct(new Product() { ID = 3, Name = "Gaming Monitor", Category = "Electronics", Brand = "Logitech" });
 
         //var updated_mouse = new Product() { ID = 1, Name = "Gaming Mouse 2", Category = "Electronics", Brand = "Logitech" };
 
@@ -18,18 +20,26 @@ class Program
 
         //UpdateProduct(updated_mouse);
 
-        DeleteProduct(2);
+        //DeleteProduct(2);
 
-        products = GetProducts();
-        foreach (Product p in products) Console.WriteLine($"{p.ID}, {p.Brand}, {p.Name}, {p.Category}");
+        //products = GetProducts();
+        //foreach (Product p in products) Console.WriteLine($"{p.ID}, {p.Brand}, {p.Name}, {p.Category}");
     }
 
     static void CreateProduct(Product product)
     {
         using (var dbContext = new ProductDbContext())
         {
-            dbContext.Products.Add(product);
-            dbContext.SaveChanges();
+            var p = dbContext.Products.FirstOrDefault<Product>(p=>p.ID == product.ID);
+            if (p == null)
+            {
+                dbContext.Products.Add(product);
+                dbContext.SaveChanges();
+            } else
+            {
+                Console.WriteLine("A product with this ID already exists");
+            }
+            
         }
     }
 
