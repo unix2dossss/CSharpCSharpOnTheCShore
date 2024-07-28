@@ -8,16 +8,20 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
-        CreateProduct(new Product() { ID = 1, Name = "Gaming Mouse", Category = "Electronics", Brand = "Logitech" });
+        //CreateProduct(new Product() { ID = 2, Name = "Gaming Mouse", Category = "Electronics", Brand = "Logitech" });
+        //CreateProduct(new Product() { ID = 3, Name = "Gaming Keyboard", Category = "Electronics", Brand = "Logitech" });
 
         //var updated_mouse = new Product() { ID = 1, Name = "Gaming Mouse 2", Category = "Electronics", Brand = "Logitech" };
 
-        //IEnumerable<Product> products = GetProducts();
-        //foreach (Product p in products) Console.WriteLine($"{p.ID}, {p.Brand}, {p.Name}, {p.Category}");
+        IEnumerable<Product> products = GetProducts();
+        foreach (Product p in products) Console.WriteLine($"{p.ID}, {p.Brand}, {p.Name}, {p.Category}");
 
         //UpdateProduct(updated_mouse);
 
+        DeleteProduct(2);
+
+        products = GetProducts();
+        foreach (Product p in products) Console.WriteLine($"{p.ID}, {p.Brand}, {p.Name}, {p.Category}");
     }
 
     static void CreateProduct(Product product)
