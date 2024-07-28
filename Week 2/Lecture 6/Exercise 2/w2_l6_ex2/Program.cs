@@ -25,4 +25,12 @@ class Program
             }
         }
     }
+
+    public static IEnumerable<Student> GetStudents()
+    {
+        using (var dbContext = new StudentDbContext())
+        {
+            return dbContext.Students.ToList<Student>();
+        }
+    }
 }
