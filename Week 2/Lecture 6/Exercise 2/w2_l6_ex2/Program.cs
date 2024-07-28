@@ -60,6 +60,9 @@ class Program
                 selected_student.LastName = student.LastName;
                 selected_student.Address = student.Address;
                 dbContext.SaveChanges();
+            } else
+            {
+                Console.WriteLine($"Student with ID {student.Id} does not exist!");
             }
         }
     }
