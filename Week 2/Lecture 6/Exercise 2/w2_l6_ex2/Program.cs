@@ -15,11 +15,14 @@ class Program
         }
 
         UpdateStudent(new Student { Id = 1, FirstName = "Vandan", LastName = "Bhatt", Address = "Auckland, Papatoetoe" });
+        DeleteStudent(new Student { Id = 1, FirstName = "Vandan", LastName = "Bhatt", Address = "Auckland, Papatoetoe" });
+
         students = GetStudents();
         foreach (var student in students)
         {
             Console.WriteLine($"Id: {student.Id}, FirstName: {student.FirstName}, LastName: {student.LastName}, Address: {student.Address}");
         }
+        
     }
 
     public static void CreateStudent(Student student)
@@ -58,6 +61,15 @@ class Program
                 selected_student.Address = student.Address;
                 dbContext.SaveChanges();
             }
+        }
+    }
+
+    public static void DeleteStudent(Student student)
+    {
+        using (var dbContext = new StudentDbContext())
+        {
+            dbContext.Students.Remove(student);
+            dbContext.SaveChanges();
         }
     }
 }
