@@ -13,12 +13,12 @@ class Program
         CreateProduct(new Product() { ID = 2, Name = "Gaming Keyboard", Category = "Electronics", Brand = "Logitech" });
         CreateProduct(new Product() { ID = 3, Name = "Gaming Monitor", Category = "Electronics", Brand = "Logitech" });
 
-        //var updated_mouse = new Product() { ID = 1, Name = "Gaming Mouse 2", Category = "Electronics", Brand = "Logitech" };
+        var updated_mouse = new Product() { ID = 4, Name = "gaming mouse 2", Category = "electronics", Brand = "logitech" };
 
         IEnumerable<Product> products = GetProducts();
         foreach (Product p in products) Console.WriteLine($"{p.ID}, {p.Brand}, {p.Name}, {p.Category}");
 
-        //UpdateProduct(updated_mouse);
+        UpdateProduct(updated_mouse);
 
         //DeleteProduct(2);
 
@@ -63,6 +63,9 @@ class Program
                 selected_product.Brand = product.Brand;
                 selected_product.Category = product.Category;
                 dbContext.SaveChanges();
+            } else
+            {
+                Console.WriteLine("There is no such product! Use CreateProduct() instead.");
             }
         }
     }
