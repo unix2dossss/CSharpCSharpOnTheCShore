@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using w3_l7_ex4.Data;
+
 namespace w3_l7_ex4;
 
 public class Program
@@ -15,6 +18,8 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddDbContext<MobilePhoneDbContext>(options => options.UseSqlite(builder.Configuration["WebAPIConnection"]));
 
         var app = builder.Build();
 
