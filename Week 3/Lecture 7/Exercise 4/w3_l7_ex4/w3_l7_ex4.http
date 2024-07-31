@@ -1,0 +1,6 @@
+@w3_l7_ex4_HostAddress = http://localhost:5057
+
+GET {{w3_l7_ex4_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
