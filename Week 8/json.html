@@ -1,0 +1,38 @@
+</html>
+<head>
+    <title></title>
+    <script>
+        const person = {
+            name: "Jason",
+            age: 23,
+            address: {
+                town: "Camp Crystal Lake",
+                state: "NJ",
+            },
+            isdead: false
+        }
+
+        const person2 = {
+            name: "James Bond",
+            age: 32,
+            address: {
+                town: "London",
+                state: null,
+            },
+            isdead: false
+        }
+
+        const pArray = [person, person2];
+        const jStr = JSON.stringify(pArray);
+
+        const y = '[{"name":"Jason","age":23,"address":{"town":"Camp Crystal Lake","state":"NJ"},"isdead":false},{"name":"James Bond","age":32,"address":{"town":"London","state":null},"isdead":false}]'
+        const myObj = JSON.parse(y);
+        alert(myObj[1].name);
+    </script>
+</head>
+
+<body>
+    <h1>JSON</h1>
+</body>
+
+<html>

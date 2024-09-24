@@ -1,0 +1,9 @@
+{
+    "name": "Jason",
+    "age": 23,
+    "address": {
+        "town": "Camp Crystal Lake",
+        "state": "NJ",
+    },
+    "isdead": false
+}
