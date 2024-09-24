@@ -1,0 +1,81 @@
+</html>
+<head>
+    <title></title>
+    <script>
+        const towns = ["Auckland", "Wellington", "Hamilton", "Queenstown", "Mumbai"];
+
+        // for (let i = 0; i < towns.length; ++i) {
+        //     alert("Hello " + towns[i]);
+        // }
+
+        // for (const element of towns) {
+        //     alert("Hello " + element);
+        // }
+
+        const greet = (e) => alert("Hello " + e);
+
+        // greet("Christchurch");
+
+        // towns.filter( (e) => e.length === 8 )
+        //     .forEach(greet);
+        // alert(towns8)
+
+        towns.push("Gujarat");
+
+        const newA = towns.map((e) => e.length);
+        alert(newA);
+
+        const sum = newA.reduce( (e, a) => a += e )
+        // alert(sum);
+
+        const j = towns.join("|")
+        alert(j);
+
+        // Filter
+        const numbers = [1, 2, 3, 4, 5, 6];
+
+        // Use filter to get only even numbers
+        const evenNumbers = numbers.filter(function(number) {
+            return number % 2 === 0;
+        });
+
+        console.log(evenNumbers); // Output: [2, 4, 6]
+
+
+        // forEach
+        const names = ['Alice', 'Bob', 'Charlie'];
+
+        // Use forEach to print each name
+        names.forEach(function(name) {
+            console.log(name);
+        });
+
+        // map
+        const numbers1 = [1, 2, 3, 4, 5];
+
+        // Use map to square each number
+        const squaredNumbers = numbers1.map(function(number) {
+            return number * number;
+        });
+
+        console.log(squaredNumbers); // Output: [1, 4, 9, 16, 25]
+
+
+        // reduce
+        const numbers3 = [1, 2, 3, 4, 5];
+
+        // Use reduce to sum all the numbers in the array
+        const sum2 = numbers.reduce(function(accumulator, currentValue) {
+            return accumulator + currentValue;
+        }, 0);
+
+        console.log(sum); // Output: 15
+
+    </script>
+</head>
+
+<body>
+    <h1>Arrays &amp; Higher Order Functions</h1>
+</body>
+
+<html>
