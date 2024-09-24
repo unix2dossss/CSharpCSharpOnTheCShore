@@ -3,19 +3,20 @@
     <meta charset="utf-8" />
     <title>Our first HTML Document</title>
     <link rel="stylesheet" href="a.css"></link>
+    <script src="a.js" defer="defer"></script>
 </head>
 
 <body>
     <header>
         <nav>
             <div style="display: flex; color: red;">
-                <div class="menuItem">Ours</div>
-                <div class="menuItem">Theirs</div>
+                <div class="menuItem" id="menuOurs">Ours</div>
+                <div class="menuItem" id="menuTheirs">Theirs</div>
             </div>
         </nav>
     </header>
     <main>
-        <section style="background-color: lightblue; display: block;">
+        <section style="background-color: lightblue; display: block;" id="sectionOurs">
             <h1 class="selectedSec">Section 1: Ours</h1>
             <p>
                 Here we have a <u>sentence</u> that<span style="background-color: lightcoral; display: inline;"">we</span>have <s>just</s> created for demo <i>purposes</i>, and we think this is a <b>great</b> setence.
@@ -59,7 +60,7 @@
                 <img width="600" src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg" />
             </p>
         </section>
-        <section style="background-color: lightgreen;">
+        <section style="background-color: lightgreen;" id="sectionTheirs">
             <h1 class="selectedSec">Section 2: Theirs</h1>
             <h2 class="selectedSec">HTML Entities</h2>
             <p>
