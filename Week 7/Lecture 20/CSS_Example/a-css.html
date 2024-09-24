@@ -1,0 +1,80 @@
+﻿<html>
+<head>
+   <meta charset="utf-8" />
+   <title>Our first HTML document</title>
+   <link rel="stylesheet" href="a-css.css" />
+</head>
+<body>
+   <header>
+      <nav>
+         <div style="display: flex; color: red;">
+            <div class="menuItem">Ours</div>
+            <div class="menuItem">Theirs</div>
+         </div>
+      </nav>
+   </header>
+   <main>
+      <section style="display: block; background-color: lightgoldenrodyellow;">
+         <h1>Section 1: Ours</h1>
+         <p>
+            Here we have a sentence that we have just
+            created for <span style="background-color: lightblue; display: inline;">demo</span> purposes.
+            And we think this is a <b>great</b> sentence.
+         </p>
+         <p>
+            A paragraph in HTML begins with &lt;p&gt;, &amp;
+            a list item begins with &lt;li&gt;. &nbsp;&nbsp;&nbsp;&nbsp;
+            If we wanted a non-breaking space, we use &amp;nbsp;.
+         </p>
+         <h2 class="selectedSec">Hyperlinks</h2>
+         <p>
+            Click <a href='https://dividni.com'>here</a> to learn
+            more about Dividni.
+         </p>
+         <h2 class="town">Lists (of Towns)</h2>
+         <ol type="I">
+            <li class="town">Invergargill</li>
+            <li class="town">Bluff</li>
+            <li class="town">Dunedin</li>
+            <li class="town" id="selectedTown">Gore</li>
+            <li class="town">Takānini</li>
+         </ol>
+
+         <h2 class="selectedSec">Tables</h2>
+         <table width="640">
+            <tr><td><b>Name</b></td><td><b>Number</b></td></tr>
+            <tr><td>Bond</td><td>007</td></tr>
+            <tr><td>Lucifer</td><td>666</td></tr>
+         </table>
+      </section>
+      <section style="display: block; background-color: lightcyan;">
+         <h1>Section 2: Theirs</h1>
+         <h2>HTML Entities</h2>
+
+         <pre>
+  /\_/\  (
+ ( ^.^ ) _)
+   \"/  (
+ ( | | )
+(__d b__)
+</pre>
+         <h2>iframe</h2>
+         <iframe width="640" src="https://dividni.com"></iframe>
+         <h2>Images</h2>
+         <p>
+            <img width="640" src="https://dividni.com/images/PrancingPony.svg" />
+         </p>
+
+         <h2 class="selectedSec">Video</h2>
+         <video width="640" controls="controls">
+            <source src="video.mp4" />
+         </video>
+         <p>© Vanilla Ice</p>
+      </section>
+   </main>
+   <footer>
+      <hr />
+      <p>Version 1.0.0. © All of us.</p>
+   </footer>
+</body>
+</html>

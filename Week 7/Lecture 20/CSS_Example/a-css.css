@@ -1,0 +1,5 @@
+.selectedSec { color: red; font-size: 24px; text-align: center; }
+.town { background-color: cornflowerblue; }
+#selectedTown { color: green; background-color: yellow; }
+body { background-color: linen; }
+.menuItem { margin: 2ex; padding: 1ex; flex-basis: 50%; text-align: center; }
