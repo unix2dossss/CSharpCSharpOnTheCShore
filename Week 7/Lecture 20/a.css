@@ -1,0 +1,25 @@
+.selectedSec {
+    color: blue;
+    font-size: 48px;
+    text-align: center;
+}
+
+.town {
+    background-color: blanchedalmond;
+}
+
+#selectedTown {
+    background-color: yellow;
+    color: blue;
+}
+
+body {
+    background-color: linen;
+}
+
+.menuItem {
+    margin: 3ex;
+    padding: 1ex;
+    flex-basis: 50%;
+    text-align: center;
+}

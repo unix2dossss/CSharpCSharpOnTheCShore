@@ -1,23 +1,24 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Our first HTML Document</title>    
+    <title>Our first HTML Document</title>
+    <link rel="stylesheet" href="a.css"></link>
 </head>
 
 <body>
     <header>
         <nav>
-            <div>
-                <div>Ours</div>
-                <div>Theirs</div>
+            <div style="display: flex; color: red;">
+                <div class="menuItem">Ours</div>
+                <div class="menuItem">Theirs</div>
             </div>
         </nav>
     </header>
     <main>
-        <section>
-            <h1>Section 1: Ours</h1>
+        <section style="background-color: lightblue; display: block;">
+            <h1 class="selectedSec">Section 1: Ours</h1>
             <p>
-                Here we have a <u>sentence</u> that<span>we</span>have <s>just</s> created for demo <i>purposes</i>, and we think this is a <b>great</b> setence.
+                Here we have a <u>sentence</u> that<span style="background-color: lightcoral; display: inline;"">we</span>have <s>just</s> created for demo <i>purposes</i>, and we think this is a <b>great</b> setence.
             </p>
             <pre>
                 
@@ -27,46 +28,46 @@
                ( | | )
               (__d b__)
             </pre>
-            <h2>Hyperlinks</h2>
+            <h2 class="selectedSec">Hyperlinks</h2>
             <p>
                 Click <a href="https://www.soundlab.co.nz/7_divini-audio">to learn about sound!</a>
             </p>
-            <h2>
+            <h2 class="selectedSec">
                 iframe
             </h2>
             <iframe width="640" href="https://www.soundlab.co.nz/7_divini-audio"></iframe>
-            <h2>
-                lists
+            <h2 class="town">
+                Towns
             </h2>
             <ol type="I">
-                <li>Invercargil</li>
-                <li>Bluff</li>
-                <li>Dunedin</li>
-                <li>Gore</li>
-                <li>Takanini</li>
+                <li class="town">Invercargil</li>
+                <li class="town">Bluff</li>
+                <li class="town">Dunedin</li>
+                <li class="town" id="selectedTown">Gore</li>
+                <li class="town">Takanini</li>
             </ol>
 
-            <h2>Tables</h2>
+            <h2 class="selectedSec">Tables</h2>
             <table width="640">
                 <tr><td><b>Name</b></th><td><b>Number</b></th></tr>
                 <tr><td>Bond</td><td>007</td></tr>
                 <tr><td>Lucifer</td><td>666</td></tr>
             </table>
 
-            <h2>Images</h2>
+            <h2 class="selectedSec">Images</h2>
             <p>
                 <img width="600" src="https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg" />
             </p>
         </section>
-        <section>
-            <h1>Section 2: Theirs</h1>
-            <h2>HTML Entities</h2>
+        <section style="background-color: lightgreen;">
+            <h1 class="selectedSec">Section 2: Theirs</h1>
+            <h2 class="selectedSec">HTML Entities</h2>
             <p>
                 A paragraph in HTML begins with &lt;p&gt;. &amp;
                 a list in HTML begins with &lt;li&gt;. &nbsp;&nbsp;&nbsp;&nbsp;
                 If we wanted a non breaking space we use &nbsp;nbsp;
             </p>
-            <h2>Video</h2>
+            <h2 class="selectedSec">Video</h2>
             <video width="640" controls="controls">
                 <source src="" />
             </video>
