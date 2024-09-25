@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>Northwind Exercise</title>
+    <script>
+      const url = "https://services.odata.org/Northwind/Northwind.svc/Orders";
+      async function GetData(url) {
+        const response = await fetch(url, {
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        console.log(response.headers.get("Content-Type"));
+        const text = await response.json();
+        const data = text.value;
+        return data;
+      }
+
+      async function PopulateTable(){
+         dataOut = await GetData(url);
+         const table = document.querySelector("table"); // Get the table element
+         console.log(dataOut);
+
+         dataOut.forEach((order, index) => {
+            const row = document.createElement("tr");
+            if (index % 2 === 0) {
+               row.style.backgroundColor = "lightblue";
+            } else {
+               row.style.backgroundColor = "lightgray";
+            }
+
+            const orderIdCell = document.createElement("td");
+            orderIdCell.textContent = order.OrderID;
+            row.appendChild(orderIdCell);
+
+            const destinationCell = document.createElement("td");
+            destinationCell.textContent = `${order.ShipName}, ${order.ShipAddress}, ${order.ShipCity}, ${order.ShipPostalCode}, ${order.ShipCountry}`;
+            row.appendChild(destinationCell);
+
+            table.appendChild(row); // Append the row to the table
+
+         })
+         
+      }
+
+      PopulateTable()
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Northwind Exercise</h1>
+    <p>
+      The REST URL
+      <a
+        href="https://services.odata.org/Northwind/Northwind.svc/Orders?$format=json"
+      >
+        https://services.odata.org/Northwind/Northwind.svc/Orders?$format=json
+      </a>
+      provides a list of orders from the Northwind database. The orders contain,
+      among other things, an order id and a destination for the order. We are
+      asked to write an application showing the order ids and the corresponding
+      destinations.
+    </p>
+    <table>
+      <td>Order ID</td>
+      <td>Destination</td>
+    </table>
+  </body>
+</html>
