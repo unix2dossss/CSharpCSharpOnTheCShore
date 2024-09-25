@@ -18,7 +18,8 @@
             <li><a href="#user-login"><span class="link-text">User Login</span></a></li>
             <li><a href="#guest-book"><span class="link-text">Guest Book</span></a></li>
         </ul>
-    </div>    
+    </div>
+    
     
     <div class="main-content">
         <section id="home">
@@ -29,7 +30,7 @@
                         Haere mai, nau mai. Welcome to our application that helps us learn a wee bit of New Zealand Sign Language (NZSL, Te Reo Turi), one of the three official languages of Aotearoa New-Zealand.
                     </p> <br>
                     <p class="version">
-                        <!-- ( version 1 placeholder ) -->
+                        ( version 1 placeholder )
                     </p>
                 </div>
             </div>
@@ -92,13 +93,21 @@
         </section>
         
 
-        <section id="user-login" style="display:none;">
+        <section class="center-flex" id="user-login" style="display:none;">
             <div class="user-login-content">
-                <div class="page-headings">
-                    <h3>User Login</h3>
-                </div>
-                <div class="user-login-container">
-                    <p>User Login Section</p>
+                <div class="user-registration-container">
+                    <form id="registration-form">
+                        <div class="page-headings login-heading">
+                            <h3>Login</h3>
+                        </div>
+                        <label for="name">Username:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                        <button type="submit" id="register-button">Login</button>
+                    </form>
                 </div>
             </div>
         </section>
