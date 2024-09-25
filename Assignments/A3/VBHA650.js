@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
       const activeSection = document.querySelector(sectionId);
       if (activeSection) {
-        activeSection.style.display = "block";
+        activeSection.style.display = "flex";
       }
     }
   

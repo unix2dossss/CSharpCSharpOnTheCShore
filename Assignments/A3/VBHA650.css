@@ -52,10 +52,15 @@
   .main-content {
     display: flex;
     padding: 20px;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .home-content {
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
   }
 
   .home-title {
@@ -75,6 +80,35 @@
     text-align: center;
     color: lightslategray;
   }
+
+  /* NZSL */
+
+  .nzsl-content {
+    width: 100%;
+  }
+
+  /* Styling for the search bar */
+  #nzsl-search-bar {
+    width: 100%;               /* Make it take up most of the container's width */
+    padding: 10px;             /* Padding inside the input */
+    margin-top: 10px;          /* Add some space between the paragraph and search bar */
+    font-size: 1rem;           /* Font size for the text */
+    border: 1px solid #ccc;    /* A light border */
+    border-radius: 5px;        /* Rounded corners */
+    background-color: #f1f1f1; /* Light background */
+    color: #333;               /* Dark text */
+  }
+
+  #nzsl-search-bar::placeholder {
+    color: #888;               /* Light placeholder color */
+  }
+
+  #nzsl-search-bar:focus {
+    outline: none;             /* Remove default blue border on focus */
+    border-color: #333;        /* Darker border when focused */
+    background-color: #eaeaea; /* Slightly darker background on focus */
+  }
+
 
   
   @media (max-width: 768px) {
@@ -97,6 +131,7 @@
     }
   
     .main-content {
+      display: flex;
       margin-left: 0px;
     }
   }
