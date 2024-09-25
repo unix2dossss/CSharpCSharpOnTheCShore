@@ -1,0 +1,25 @@
+==========================================
+Case Register 1 : 
+URL: http://localhost:8080/webapi/Register
+server responded
+==========================================
+Case PurchaseSign 1 
+URL: http://localhost:8080/webapi/PurchaseSign/laptop-5511
+
+server responded
+==========================================
+Case AddEvent 1: 
+URL: http://localhost:8080/webapi/AddEvent
+
+server responded
+==========================================
+Case EventCount 1 : 
+URL: http://localhost:8080/webapi/EventCount
+
+server responded
+==========================================
+Case Event 1 : 
+URL: http://localhost:8080/webapi/Event/123
+
+server responded
+

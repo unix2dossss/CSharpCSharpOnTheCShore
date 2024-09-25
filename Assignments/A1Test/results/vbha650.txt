@@ -1,0 +1,38 @@
+==========================================
+Case GetVersion
+URL: http://localhost:8080/webapi/GetVersion
+server responded
+==========================================
+Case GetLogo
+URL: http://localhost:8080/webapi/Logo
+server responded
+==========================================
+Case AllSigns: 
+UPI: http://localhost:8080/webapi/AllSigns
+server responded
+==========================================
+Case Signs 1: 
+URL: http://localhost:8080/webapi/Signs/u
+server responded
+==========================================
+Case SignImage
+URL: http://localhost:8080/webapi/SignImage/bu
+server responded
+==========================================
+Case GetComment 1
+URL: http://localhost:8080/webapi/GetComment/3
+server responded
+==========================================
+Case WriteComment: 
+URL: http://localhost:8080/webapi/WriteComment
+Request body:
+{
+	 "UserComment" : "test",
+	 "Name" : "test"
+}
+server responded
+==========================================
+Case Comments 1
+URL: http://localhost:8080/webapi/Comments/4
+server responded
+
