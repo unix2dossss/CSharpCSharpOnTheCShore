@@ -70,7 +70,7 @@
   }
 
   .sidebar-links a.active {
-    background-color: #ffb74d;
+    background-color: #BBB;
     color: black;
   }
   
@@ -147,6 +147,80 @@
     text-align: center;
     font-size: 1.2rem;
   }
+
+  .events-content {
+    width: 100%;
+  }
+
+  /* Events */
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+    background-color: #f9f9f9;
+  }
+
+  .event-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-date {
+    background-color: #ffb74d;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-width: 100px;
+  }
+
+  .event-details {
+    flex: 1;
+    margin-left: 20px;
+  }
+
+  .event-details h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ffb74d;
+  }
+
+  .event-details p {
+    margin: 5px 0;
+  }
+
+  .event-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-btn {
+    background-color: #555;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .icon-btn img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .icon-btn:hover {
+    background-color: #ffb74d;
+  }
+
 
 
   /* Registration */
