@@ -91,10 +91,18 @@
             </div>
         </section>
 
-        <section id="guest-book" style="display:none;">
+        <section id="guest-book" style="display:none; width: 100%">
             <div class="guest-book-content">
                 <div class="guest-book-container">
-                    <p>Guest Book Section</p>
+                    <textarea id="comment-input" placeholder="Write your comment..." rows="4"></textarea>
+                    <button id="post-comment-button">Post Comment</button>
+
+                    <div class="recent-comments">
+                        <h3>Recent Comments</h3>
+                        <ul id="comments-list">
+                            <!-- This is where the comments will be appended -->
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>  
