@@ -87,28 +87,41 @@
     width: 100%;
   }
 
-  /* Styling for the search bar */
   #nzsl-search-bar {
-    width: 100%;               /* Make it take up most of the container's width */
-    padding: 10px;             /* Padding inside the input */
-    margin-top: 10px;          /* Add some space between the paragraph and search bar */
-    font-size: 1rem;           /* Font size for the text */
-    border: 1px solid #ccc;    /* A light border */
-    border-radius: 5px;        /* Rounded corners */
-    background-color: #f1f1f1; /* Light background */
-    color: #333;               /* Dark text */
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
   }
 
   #nzsl-search-bar::placeholder {
-    color: #888;               /* Light placeholder color */
+    color: #888;
   }
 
   #nzsl-search-bar:focus {
-    outline: none;             /* Remove default blue border on focus */
-    border-color: #333;        /* Darker border when focused */
-    background-color: #eaeaea; /* Slightly darker background on focus */
+    outline: none;
+    border-color: #333;
+    background-color: #eaeaea;
   }
 
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .grid-item {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
 
   
   @media (max-width: 768px) {
@@ -134,5 +147,8 @@
       display: flex;
       margin-left: 0px;
     }
+
+    .grid-container {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
   }
-  
