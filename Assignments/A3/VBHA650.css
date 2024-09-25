@@ -34,6 +34,7 @@
     justify-content: flex-start;
     top: 0;
     left: 0;
+    z-index: 1;
   }
 
   .version {
@@ -345,6 +346,26 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
+  #footer {
+    width: 100%;
+    background-color: #444;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    padding-left: 350px;
+    font-size: 0.8rem; /* Small font size */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0; /* Ensure it's on top of other elements */
+  }
+
+  #footer p {
+    margin: 0;
+    font-weight: 300;
+  }
+
   
   @media (max-width: 768px) {
     .sidebar {
@@ -376,5 +397,9 @@
 
     .user-registration-container {
       width: 60vw;
+    }
+
+    #footer {
+      padding-left: 80px;
     }
   }
