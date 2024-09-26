@@ -125,6 +125,45 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function convertUtcToNZTime(utcString) {
+    // Extract components from the string (format: 20240903T010000Z)
+    const year = parseInt(utcString.slice(0, 4), 10);     // 2024
+    const month = parseInt(utcString.slice(4, 6), 10) - 1; // 09 (months are 0-indexed in JS Date)
+    const day = parseInt(utcString.slice(6, 8), 10);      // 03
+    const hours = parseInt(utcString.slice(9, 11), 10);   // 01 (hours in 24-hour format)
+    const minutes = parseInt(utcString.slice(11, 13), 10); // 00
+    const seconds = parseInt(utcString.slice(13, 15), 10); // 00
+
+    // Create a UTC date
+    const utcDate = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+
+    // Return the date in local New Zealand time with the desired format
+    return utcDate.toLocaleString("en-NZ", {
+        timeZone: "Pacific/Auckland",
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
+  }
+
+  function formatDateString(isoString) {
+    // Extract the year, month, and day from the string
+    const year = isoString.slice(0, 4);     // YYYY
+    const month = isoString.slice(4, 6);    // MM
+    const day = isoString.slice(6, 8);      // DD
+
+    // Convert numeric month to abbreviated month name
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthName = monthNames[parseInt(month, 10) - 1];
+
+    // Format the date as "9 Sep 2024"
+    return `${parseInt(day, 10)} ${monthName} ${year}`;
+  }
+
   // Function to parse calendar data (VCALENDAR format)
   function parseVCalendarData(data) {
     data_list = data.split("\n");
@@ -134,13 +173,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const description = data_list[10].split(":")[1];
     const location = data_list[11].split(":")[1];
     
+    console.log(start_time);
+    const startNZTime = convertUtcToNZTime(start_time);
+    const endNZTime = convertUtcToNZTime(end_time);
+    const formattedDate = formatDateString(start_time);
+
+
     const event = {};
 
     event.summary = summary;
     event.description = description;
     event.location = location;
-    event.dtstart = start_time;
-    event.dtend = end_time;
+    event.dtstart = startNZTime;
+    event.dtend = endNZTime;
+    event.date = formattedDate;
 
     return event;
   }
@@ -153,8 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const eventDate = document.createElement("div");
     eventDate.classList.add("event-date");
-    const startDate = new Date(event.dtstart); // Parse the start date
-    eventDate.innerHTML = `<p>${startDate.getDate()} ${startDate.toLocaleString('default', { month: 'short' })}<br>${startDate.getFullYear()}</p>`;
+    eventDate.innerHTML = `<p>📅<br>${event.date.split(" ")[0]} ${event.date.split(" ")[1]}<br>${event.date.split(" ")[2]}</p>`;
 
     const eventDetails = document.createElement("div");
     eventDetails.classList.add("event-details");
@@ -162,8 +207,8 @@ document.addEventListener("DOMContentLoaded", function () {
       <h4>${event.summary}</h4>
       <p>${event.description}</p>
       <p><strong>Location:</strong> ${event.location}</p>
-      <p><strong>Starts:</strong> ${new Date(event.dtstart).toLocaleString()}</p>
-      <p><strong>Finishes:</strong> ${new Date(event.dtend).toLocaleString()}</p>
+      <p><strong>Starts:</strong> ${event.dtstart}</p>
+      <p><strong>Finishes:</strong> ${event.dtend}</p>
     `;
 
     const eventIcon = document.createElement("div");
@@ -283,11 +328,106 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Call the function to fetch and display the version
-    fetchVersion();
+    const userInfo = document.getElementById('user-info'); // Placeholder for username and logout
+    let storedUsername = null;
+    let storedPassword = null;
 
-  // Attach the submit event listener to the registration form
-  registerForm.addEventListener('submit', handleRegister);
+    // Function to encode username and password to base64 for Authorization header
+    function encodeCredentials(username, password) {
+        return btoa(`${username}:${password}`); // base64 encoding
+    }
+
+    // Function to handle login form submission
+    async function handleLogin(event) {
+        event.preventDefault(); // Prevent form from submitting the traditional way
+
+        // Collect username and password from form
+        const username = document.getElementById('login_name').value.trim();
+        const password = document.getElementById('login_password').value.trim();
+
+        // If username or password is missing, show error message
+        if (!username || !password) {
+            alert("Please fill in both username and password.");
+            return;
+        }
+
+        // Prepare the Authorization header using base64 encoding
+        const authHeader = `Basic ${encodeCredentials(username, password)}`;
+
+        try {
+            // Send GET request to /api/TestAuth with Authorization header
+            const response = await fetch('https://cws.auckland.ac.nz/nzsl/api/TestAuth', {
+                method: 'GET',
+                headers: {
+                    'Authorization': authHeader
+                }
+            });
+
+            // Check if the response status is 200 (OK), meaning login is successful
+            if (response.ok) {
+                // Store the credentials in memory (logged-in state)
+                storedUsername = username;
+                storedPassword = password;
+
+                // Update the sidebar with the username and logout option
+                updateSidebarForLogin(username);
+            } else {
+                alert("Login failed. Invalid username or password.");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            alert("An error occurred. Please try again.");
+        }
+    }
+
+    // Function to update the sidebar with login info
+    function updateSidebarForLogin(username) {
+        // Clear any existing content in the user-info div
+        userInfo.innerHTML = '';
+
+        // Create a new list item for the username and logout link
+        const userItem = document.createElement('div');
+        userItem.classList.add('sidebar-item');
+        userItem.innerHTML = `
+            <span>${username}</span> - <a href="#" id="logout-link">Logout</a>
+        `;
+
+        // Add the item to the user-info div
+        userInfo.appendChild(userItem);
+
+        // Attach the logout event to the logout link
+        const logoutLink = document.getElementById('logout-link');
+        logoutLink.addEventListener('click', handleLogout);
+    }
+
+    // Function to log out (clears stored credentials and switches to guest mode)
+    function handleLogout(event) {
+        event.preventDefault();
+
+        // Clear the stored credentials
+        storedUsername = null;
+        storedPassword = null;
+
+        // Switch back to guest mode in the sidebar
+        showGuestMode();
+        
+        alert("You have logged out.");
+    }
+
+    // Function to show the guest mode in the sidebar
+    function showGuestMode() {
+        userInfo.innerHTML = '<span>Browsing as Guest - <a href="#user-login">Login</a></span>';
+    }
+
+    // Call showGuestMode initially to ensure guest mode is shown by default
+    showGuestMode();
+
+    // Attach the submit event listener to the login form
+    const loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', handleLogin);
+
+
+  fetchVersion();
 
   // Load events when the page is ready
   loadEvents();
