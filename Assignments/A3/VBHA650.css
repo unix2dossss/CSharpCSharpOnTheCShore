@@ -303,7 +303,38 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 
-  #register-button {
+  #login-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #login-form label {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  #login-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem ;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+  }
+
+  #login-form input:focus {
+    outline: none;
+    border-color: #333;
+    background-color: #eaeaea;
+  }
+
+  #login-form input::placeholder {
+    color: #888;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #register-button, #login-button {
     padding: 12px;
     font-size: 1.1rem;
     background-color: #333;
@@ -314,9 +345,10 @@
     transition: background-color 0.3s ease;
   }
 
-  #register-button:hover {
+  #register-button:hover, #login-button:hover {
     background-color: #555;
   }
+
 
   .guest-book-content {
     width: 100%;
