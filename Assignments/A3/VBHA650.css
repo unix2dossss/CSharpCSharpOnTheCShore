@@ -37,10 +37,6 @@
     left: 0;
     z-index: 1;
   }
-
-  .version {
-    bottom: 0;
-  }
   
   .sidebar-logo {
     color: white;
@@ -92,6 +88,16 @@
     width: 100%;
   }
 
+  .home-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .home-heading img {
+    height: 10vw;
+  }
+  
   .home-title {
     font-size: 15vw;
     text-align: center;
@@ -347,6 +353,9 @@
 
   #register-button:hover, #login-button:hover {
     background-color: #555;
+  }
+
+  #register-message {
   }
 
 

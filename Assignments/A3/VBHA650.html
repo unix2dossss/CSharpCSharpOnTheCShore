@@ -25,10 +25,14 @@
         <section id="home">
             <div class="home-content">
                 <div class="home-container">
-                    <p class="home-title"><strong>NZSL</strong></p>
+                    <div class="home-heading">
+                        <img src="https://cws.auckland.ac.nz/nzsl/api/Logo">
+                        <p class="home-title"><strong>NZSL</strong></p>
+                    </div>
                     <p class="home-subtitle">
-                        Haere mai, nau mai. Welcome to our application that helps us learn a wee bit of New Zealand Sign Language (NZSL, Te Reo Turi), one of the three official languages of Aotearoa New-Zealand.
+                        Haere mai, nau mai. Welcome to our application that helps us learn a bit of New Zealand Sign Language (NZSL, Te Reo Turi), one of the three official languages of Aotearoa New-Zealand.
                     </p> <br>
+                    <p class="version"></p>
                 </div>
             </div>
         </section>
@@ -91,6 +95,8 @@
 
                         <label for="password">Password:</label>
                         <input type="password" id="register_password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+
+                        <p id="register-message" style="color: red;"></p>
 
                         <button type="submit" id="register-button">Register</button>
                     </form>
