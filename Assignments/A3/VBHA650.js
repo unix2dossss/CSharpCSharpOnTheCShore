@@ -39,13 +39,28 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBar = document.getElementById("nzsl-search-bar");
   const resultsContainer = document.getElementById("sign-results");
 
-  function createGridItem(sign) {
+  async function createGridItem(sign) {
     const gridItem = document.createElement("div");
     gridItem.classList.add("grid-item");
 
     const image = document.createElement("img");
-    image.src = "https://i.ibb.co/Hq9s35p/98196f62-00aa-4cfb-a0e2-1c48d17cef65.png"; // Placeholder image
-    image.alt = `Sign for ${sign.description}`;
+    try {
+      const imageUrl = `https://cws.auckland.ac.nz/nzsl/api/SignImage/${sign.id}`; // Construct the image URL
+      const imageResponse = await fetch(imageUrl);
+
+      if (imageResponse.ok) {
+        image.src = imageUrl; // Set the image URL if the response is OK
+        image.alt = `Sign for ${sign.description}`;
+      } else {
+        // If image fails, use a placeholder image
+        image.src = "https://i.ibb.co/Hq9s35p/98196f62-00aa-4cfb-a0e2-1c48d17cef65.png";
+        image.alt = "Image not available";
+      }
+    } catch (error) {
+      console.error("Error fetching image:", error);
+      image.src = "https://i.ibb.co/Hq9s35p/98196f62-00aa-4cfb-a0e2-1c48d17cef65.png"; // Placeholder in case of error
+      image.alt = "Image not available";
+    }
     image.classList.add("grid-img");
 
     const description = document.createElement("p");
@@ -58,31 +73,34 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to fetch signs based on input
-  async function fetchSigns(query="") {
-    api_url = `https://cws.auckland.ac.nz/nzsl/api/Signs/${query}`
+  async function fetchSigns(query = "") {
+    let apiUrl = `https://cws.auckland.ac.nz/nzsl/api/Signs/${query}`;
+
+    // If the query is empty, call the AllSigns API
     if (query.length === 0) {
-      api_url = `https://cws.auckland.ac.nz/nzsl/api/AllSigns`
+      apiUrl = `https://cws.auckland.ac.nz/nzsl/api/AllSigns`;
     }
 
     try {
-      const response = await fetch(api_url);
+      const response = await fetch(apiUrl);
       const signs = await response.json(); // Assuming API returns JSON
       resultsContainer.innerHTML = ""; // Clear previous results
 
-      signs.forEach(sign => {
-        const gridItem = createGridItem(sign);
+      for (const sign of signs) {
+        const gridItem = await createGridItem(sign);
         resultsContainer.appendChild(gridItem);
-      });
+      }
     } catch (error) {
       console.error("Error fetching signs:", error);
     }
   }
 
+  // Call AllSigns when the page first loads to show all signs
   fetchSigns();
+
   // Event listener for search input
   searchBar.addEventListener("input", function () {
     const query = searchBar.value.trim();
     fetchSigns(query); // Fetch signs dynamically based on input
   });
-
 });
