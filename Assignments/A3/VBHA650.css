@@ -71,6 +71,10 @@
     background-color: #BBB;
     color: black;
   }
+
+  .link-symbol {
+    margin-right: 10px;
+  }
   
   .main-content {
     display: flex;
@@ -225,16 +229,12 @@
 
   .icon-btn {
     background-color: #555;
+    color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-
-  .icon-btn img {
-    width: 25px;
-    height: 25px;
   }
 
   .icon-btn:hover {
@@ -482,6 +482,10 @@
     .link-text {
       display: none;
     }
+
+    .link-symbol {
+      margin-right: 0;
+    }
   
     .main-content {
       display: flex;
@@ -512,6 +516,10 @@
         margin-top: 10px;
         align-self: flex-end;
     }
+
+    .event-details {
+      margin-left: 0;
+  }
 
     .user-registration-container {
       width: 60vw;

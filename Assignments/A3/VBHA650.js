@@ -4,36 +4,60 @@ document.addEventListener("DOMContentLoaded", function () {
   const sections = document.querySelectorAll("section");
 
   function showSection(sectionId) {
-    sections.forEach((section) => {
-      section.style.display = "none"; // Hide all sections
-    });
+      sections.forEach((section) => {
+          section.style.display = "none"; // Hide all sections
+      });
 
-    const activeSection = document.querySelector(sectionId);
-    if (activeSection) {
-      activeSection.style.display = "flex"; // Show the selected section
-    }
+      const activeSection = document.querySelector(sectionId);
+      if (activeSection) {
+          activeSection.style.display = "flex"; // Show the selected section
+      }
   }
 
   function setActiveLink(selectedLink) {
-    links.forEach((link) => {
-      link.classList.remove("active"); // Remove active class from all links
-    });
-    selectedLink.classList.add("active"); // Set active class for selected link
+      links.forEach((link) => {
+          link.classList.remove("active"); // Remove active class from all links
+      });
+      selectedLink.classList.add("active"); // Set active class for selected link
   }
 
   links.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault(); // Prevent default link behavior
-      const sectionId = this.getAttribute("href");
-      showSection(sectionId);
-      setActiveLink(this);
-    });
+      link.addEventListener("click", function (e) {
+          e.preventDefault(); // Prevent default link behavior
+          const sectionId = this.getAttribute("href");
+          showSection(sectionId);
+          setActiveLink(this);
+      });
   });
 
   // Default view is the home section
   showSection("#home");
   setActiveLink(document.querySelector('a[href="#home"]'));
 
+  // ------- Comment Posting --------
+  const postCommentButton = document.getElementById('post-comment-button');
+
+  postCommentButton.addEventListener("click", function () {
+      if (!storedUsername || !storedPassword) {
+          // User is not logged in, redirect to login page
+          alert("Please login to post a comment.");
+          showSection("#user-login");  // Redirect to the login section
+          setActiveLink(document.querySelector('a[href="#user-login"]'));
+      } else {
+          // User is logged in, proceed with posting the comment
+          postComment();
+      }
+  });
+
+  // Function to handle posting the comment
+  function postComment() {
+      const commentInput = document.getElementById('comment-input').value.trim();
+      if (commentInput) {
+          alert("Comment posted: " + commentInput); // Here you would send the comment to your backend API
+      } else {
+          alert("Please write a comment before posting.");
+      }
+  }
   // ------- Search --------
   
   const searchBar = document.getElementById("nzsl-search-bar");
@@ -173,7 +197,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const description = data_list[10].split(":")[1];
     const location = data_list[11].split(":")[1];
     
-    console.log(start_time);
     const startNZTime = convertUtcToNZTime(start_time);
     const endNZTime = convertUtcToNZTime(end_time);
     const formattedDate = formatDateString(start_time);
@@ -193,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to create event cards dynamically
   function createEventCard(event, index) {
-    // console.log(event)
     const eventCard = document.createElement("div");
     eventCard.classList.add("event-card");
 
@@ -213,9 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const eventIcon = document.createElement("div");
     eventIcon.classList.add("event-icon");
-    eventIcon.innerHTML = `<a href="https://cws.auckland.ac.nz/nzsl/api/Event/${index}" download="event_${index}.ics" class="icon-btn">
-      <img src="" alt="Add to Calendar">
-    </a>`;
+    eventIcon.innerHTML = `<a href="https://cws.auckland.ac.nz/nzsl/api/Event/${index}" download="event_${index}.ics" class="icon-btn">Add to Calendar</a>`;
 
     eventCard.appendChild(eventDate);
     eventCard.appendChild(eventDetails);
@@ -341,6 +361,9 @@ document.addEventListener("DOMContentLoaded", function () {
     async function handleLogin(event) {
         event.preventDefault(); // Prevent form from submitting the traditional way
 
+        // Clear the previous message
+        loginMessage.textContent = "";
+
         // Collect username and password from form
         const username = document.getElementById('login_name').value.trim();
         const password = document.getElementById('login_password').value.trim();
@@ -363,21 +386,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
 
+            const result = await response.text(); // Read response as text
+
             // Check if the response status is 200 (OK), meaning login is successful
             if (response.ok) {
                 // Store the credentials in memory (logged-in state)
                 storedUsername = username;
                 storedPassword = password;
-
+                loginMessage.textContent = `User ${storedUsername} logged in!`; // e.g., "User registered"
+                loginMessage.style.color = "green"; // Set success message color
                 // Update the sidebar with the username and logout option
                 updateSidebarForLogin(username);
+                loginForm.reset(); // Clear the form if registration successful
             } else {
-                alert("Login failed. Invalid username or password.");
+                loginMessage.textContent = "Invalid Credentials. Please try again!"; // e.g., "Username not available"
+                loginMessage.style.color = "red"; // Set error message color
             }
         } catch (error) {
-            console.error("Error during login:", error);
-            alert("An error occurred. Please try again.");
+            console.log("Debug Server Error!")
         }
+
     }
 
     // Function to update the sidebar with login info
@@ -424,10 +452,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Attach the submit event listener to the login form
     const loginForm = document.getElementById('login-form');
+    const loginMessage = document.getElementById('login-message');
     loginForm.addEventListener('submit', handleLogin);
 
 
   fetchVersion();
+
+  // Attach the submit event listener to the registration form
+  registerForm.addEventListener('submit', handleRegister);
 
   // Load events when the page is ready
   loadEvents();

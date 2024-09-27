@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NZSL</title>
   <link rel="stylesheet" href="VBHA650.css">
+  <link rel="icon" type="image/png" href="https://cws.auckland.ac.nz/nzsl/api/Logo">
   <script src="VBHA650.js"></script>
 </head>
 <body>
@@ -12,12 +13,12 @@
         <div class="sidebar-logo"><strong>NZSL</strong></div>
         
         <ul class="sidebar-links">
-            <li><a href="#home" class="active"><span class="link-text">Home</span></a></li>
-            <li><a href="#nzsl"><span class="link-text">NZSL</span></a></li>
-            <li><a href="#events"><span class="link-text">Events</span></a></li>
-            <li><a href="#user-login"><span class="link-text">User Login</span></a></li>
-            <li><a href="#user-registration"><span class="link-text">User Registration</span></a></li>
-            <li><a href="#guest-book"><span class="link-text">Guest Book</span></a></li>
+            <li><a href="#home" class="active"><span class="link-symbol">🏡</span><span class="link-text">Home</span></a></li>
+            <li><a href="#nzsl"><span class="link-symbol">✋</span><span class="link-text">NZSL</span></a></li>
+            <li><a href="#events"><span class="link-symbol">📆</span><span class="link-text">Events</span></a></li>
+            <li><a href="#user-login"><span class="link-symbol">🦰</span><span class="link-text">User Login</span></a></li>
+            <li><a href="#user-registration"><span class="link-symbol">➕</span><span class="link-text">User Registration</span></a></li>
+            <li><a href="#guest-book"><span class="link-symbol">📔</span><span class="link-text">Guest Book</span></a></li>
         </ul>
 
         <div id="user-info">
@@ -122,6 +123,8 @@
 
                         <label for="password">Password:</label>
                         <input type="password" id="login_password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+
+                        <p id="login-message" style="color: red;"></p>
 
                         <button type="submit" id="login-button">Login</button>
                     </form>
