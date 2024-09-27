@@ -1,13 +1,13 @@
 ### TODOS
 
 #### General Application Functionality
-- [ ] Showing the correct logo
+- [x] Showing the correct logo
 - [x] Having the correct favicon for the application
 - [x] Having logical sections (e.g., home and guestbook) and being able to see only one section at a time
 
 #### Comments Section
 - [x] Being able to view the current set of comments
-- [ ] Being able to submit comments
+- [x] Being able to submit comments
 - [x] Post comment action re-directed to login if the user is not currently logged in
 
 #### NZSL Signs Functionality
@@ -23,7 +23,7 @@
 
 #### User Registration & Login
 - [x] Being able to successfully register a user
-- [ ] Showing the appropriate status message upon registration attempt
-- [ ] Showing an appropriate error message if logging in is unsuccessful
-- [ ] Login status (logged in or not) shown
-- [ ] Logout option available and functional (when logged in)
+- [x] Showing the appropriate status message upon registration attempt
+- [x] Showing an appropriate error message if logging in is unsuccessful
+- [x] Login status (logged in or not) shown
+- [x] Logout option available and functional (when logged in)
