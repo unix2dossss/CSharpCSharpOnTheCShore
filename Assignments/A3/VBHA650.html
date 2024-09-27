@@ -102,7 +102,7 @@
                         <label for="password">Password:</label>
                         <input type="password" id="register_password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
 
-                        <p id="register-message" style="color: red;"></p>
+                        <p id="register-message" style="color: red; margin-bottom: 15px;"></p>
 
                         <button type="submit" id="register-button">Register</button>
                     </form>
@@ -124,7 +124,7 @@
                         <label for="password">Password:</label>
                         <input type="password" id="login_password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
 
-                        <p id="login-message" style="color: red;"></p>
+                        <p id="login-message" style="color: red; margin-bottom: 15px;"></p>
 
                         <button type="submit" id="login-button">Login</button>
                     </form>
@@ -140,63 +140,20 @@
                 <div class="guest-book-container">
                     
                     <textarea id="comment-input" placeholder="Write your comment..." rows="4"></textarea>
+                    <p id="comment-message" style="color: red;"></p>
                     <button id="post-comment-button">Post Comment</button>
 
                     <div class="recent-comments">
                         <h3>Recent Comments</h3>
                         <div class="comment-card">
                             <div class="comment-details">
-                                <h4>Vandan Bhatt</h4>
-                                <p>We are privileged to have some of the country’s best ornithologists come to tell us about the local flyers.</p>
-                                <p><strong>Date:</strong> 9/09/2024, 2:00:00 PM</p>
-                            </div>
-                        </div>
-                        <div class="comment-card">
-                            <div class="comment-details">
-                                <h4>Vandan Bhatt</h4>
-                                <p>We are privileged to have some of the country’s best ornithologists come to tell us about the local flyers.</p>
-                                <p><strong>Date:</strong> 9/09/2024, 2:00:00 PM</p>
-                            </div>
-                        </div>
-                        <div class="comment-card">
-                            <div class="comment-details">
-                                <h4>Vandan Bhatt</h4>
-                                <p>We are privileged to have some of the country’s best ornithologists come to tell us about the local flyers.</p>
-                                <p><strong>Date:</strong> 9/09/2024, 2:00:00 PM</p>
-                            </div>
-                        </div>
-                        <div class="comment-card">
-                            <div class="comment-details">
-                                <h4>Vandan Bhatt</h4>
-                                <p>We are privileged to have some of the country’s best ornithologists come to tell us about the local flyers.</p>
-                                <p><strong>Date:</strong> 9/09/2024, 2:00:00 PM</p>
-                            </div>
-                        </div>
-                        <div class="comment-card">
-                            <div class="comment-details">
-                                <h4>Vandan Bhatt</h4>
-                                <p>We are privileged to have some of the country’s best ornithologists come to tell us about the local flyers.</p>
-                                <p><strong>Date:</strong> 9/09/2024, 2:00:00 PM</p>
-                            </div>
-                        </div>
-                        <div class="comment-card">
-                            <div class="comment-details">
-                                <h4>Vandan Bhatt</h4>
-                                <p>We are privileged to have some of the country’s best ornithologists come to tell us about the local flyers.</p>
-                                <p><strong>Date:</strong> 9/09/2024, 2:00:00 PM</p>
-                            </div>
-                        </div>
-                        <div class="comment-card">
-                            <div class="comment-details">
-                                <h4>Vandan Bhatt</h4>
-                                <p>We are privileged to have some of the country’s best ornithologists come to tell us about the local flyers.</p>
-                                <p><strong>Date:</strong> 9/09/2024, 2:00:00 PM</p>
+                                <iframe id="comments-iframe" src="https://cws.auckland.ac.nz/nzsl/api/Comments" frameborder="0"></iframe>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>  
+        </section>
 
         <!-- <footer id="footer">
             <p>Version 1.0.0</p>

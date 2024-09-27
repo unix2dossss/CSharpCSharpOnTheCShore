@@ -36,28 +36,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ------- Comment Posting --------
   const postCommentButton = document.getElementById('post-comment-button');
+  const commentMessage = document.getElementById('comment-message');
+
 
   postCommentButton.addEventListener("click", function () {
       if (!storedUsername || !storedPassword) {
           // User is not logged in, redirect to login page
-          alert("Please login to post a comment.");
+          // alert("Please login to post a comment.");
+          commentMessage.textContent = "Please login to post a comment!";
+          commentMessage.style.color = "orange"; // Set error message color
           showSection("#user-login");  // Redirect to the login section
           setActiveLink(document.querySelector('a[href="#user-login"]'));
       } else {
-          // User is logged in, proceed with posting the comment
           postComment();
       }
   });
 
-  // Function to handle posting the comment
-  function postComment() {
-      const commentInput = document.getElementById('comment-input').value.trim();
-      if (commentInput) {
-          alert("Comment posted: " + commentInput); // Here you would send the comment to your backend API
-      } else {
-          alert("Please write a comment before posting.");
+// Function to handle posting the comment
+async function postComment() {
+  const commentInput = document.getElementById('comment-input').value.trim();
+
+  if (commentInput) {
+      // Prepare the Authorization header using the stored credentials
+      const authHeader = `Basic ${btoa(`${storedUsername}:${storedPassword}`)}`;
+
+      try {
+          // Construct the URL with the comment as part of the query string
+          const url = `https://cws.auckland.ac.nz/nzsl/api/Comment?comment=${encodeURIComponent(commentInput)}`;
+
+          // Send a POST request to the API with the Authorization header and comment in the query string
+          const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Authorization': authHeader, // Include the Authorization header
+                  'Accept': 'text/plain' // Expect plain text in response
+              }
+          });
+
+          const result = await response.text(); // Read the response as text
+          commentMessage.textContent = "";
+
+
+          // Handle response from the server
+          if (response.ok) {
+              document.getElementById('comment-input').value = ''; // Clear the input box
+              const commentiframe = document.getElementById('comments-iframe');
+              commentiframe.src = commentiframe.src;
+              commentMessage.textContent = "Your comment has been posted!";
+              commentMessage.style.color = "green"; // Set error message color
+          } else {
+              commentMessage.textContent = "Failed to post comment. Please try again!";
+              commentMessage.style.color = "red"; // Set error message color
+          }
+      } catch (error) {
+          console.error("Error posting comment:", error);
+          alert("An error occurred while posting your comment. Please try again.");
       }
+  } else {
+      alert("Please write a comment before posting.");
   }
+}
+
+
+
+
   // ------- Search --------
   
   const searchBar = document.getElementById("nzsl-search-bar");
@@ -398,6 +440,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Update the sidebar with the username and logout option
                 updateSidebarForLogin(username);
                 loginForm.reset(); // Clear the form if registration successful
+                commentMessage.textContent = "";
             } else {
                 loginMessage.textContent = "Invalid Credentials. Please try again!"; // e.g., "Username not available"
                 loginMessage.style.color = "red"; // Set error message color
@@ -440,6 +483,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showGuestMode();
         
         alert("You have logged out.");
+        loginMessage.textContent = "";
     }
 
     // Function to show the guest mode in the sidebar
