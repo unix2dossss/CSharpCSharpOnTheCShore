@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (activeSection) {
           activeSection.style.display = "flex"; // Show the selected section
       }
+
+      const commentiframe = document.getElementById('comments-iframe');
+      commentiframe.src = commentiframe.src;
+
+      const commentMessage = document.getElementById('comment-message');
+      commentMessage.textContent = "";
   }
 
   function setActiveLink(selectedLink) {

@@ -39,13 +39,20 @@
   }
   
   .sidebar-logo {
+    display: flex;  /* Flexbox for horizontal alignment */
     color: white;
     font-size: 1.5rem;
     text-align: center;
+    align-items: center;  /* Aligns the text and image vertically */
     padding: 20px;
     background-color: #444;
   }
-  
+
+  .logo-img {
+    height: 1em;  /* This makes the image height match the text size */
+    margin-right: 10px;  /* Adds some spacing between the image and the text */
+  }
+
   .sidebar-links {
     list-style: none;
     padding: 0;
@@ -471,6 +478,19 @@
     .sidebar-logo {
       font-size: 1rem;
     }
+
+    .sidebar-logo {
+      justify-content: center; /* Centers the logo horizontally */
+    }
+
+    .text-logo {
+      display: none;
+    }
+
+    .logo-img {
+      margin-right: 0;
+      justify-items: center;
+    }
   
     .sidebar-links a {
       text-align: center;
@@ -483,6 +503,7 @@
 
     .link-symbol {
       margin-right: 0;
+      font-size: 3vw;
     }
   
     .main-content {
