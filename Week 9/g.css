@@ -1,0 +1,18 @@
+body {
+    background: linear-gradient(lightgrey, blue);
+}
+
+#popupContent {
+    background-color: blue;
+    color: yellow;
+    border: 2px solid purple;
+    text-align: center;
+    width: 40%;
+    display: none;
+    margin: auto;
+}
+
+#popupContainer {
+    position: fixed;
+    width: 100%;
+}
