@@ -8,7 +8,7 @@
     <polygon points="400 300 400 200 300 400" stroke="yellow" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-opacity="0.5"/>
     <text x="100" y="450" stroke="red">COMPSCI 335</text>
 
-    <g clip-path="url(#cutout)">
+<g clip-path="url(#cutout)">
     <g transform="rotate(90 0 500)">
     <line x1="50" y1="50" x2="200" y2="300" stroke="red" stroke-width="15" stroke-linecap="round"/>
     <circle cx="200" cy="300" r="60" stroke="red" stroke-width="15" fill="brown"/>
@@ -16,13 +16,12 @@
     <polygon points="400 300 400 200 300 400" stroke="yellow" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-opacity="0.5"/>
     <text x="100" y="450" stroke="red">COMPSCI 335</text>
     </g>
-    </g>
+</g>
 
 <defs>
 <clipPath id="cutout">
     <rect x="100" y="600" width="300" height="300" fill="none" stroke="black"/>
 </clipPath>
-<
 </defs>
 
 
