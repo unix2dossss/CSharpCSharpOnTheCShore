@@ -18,8 +18,8 @@ let minVisits;
 let height;
 let width;
 
-visitsTransformed = []
-uniqueVisitsTransformed = []
+let visitsTransformed = [];
+let uniqueVisitsTransformed = [];
 
 let svg;
 
@@ -27,17 +27,41 @@ async function createSVGBase() {
     let svgWidth = width;
     let svgHeight = height;
 
+    let totalSvgWidth = svgWidth + 30;
+
     svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("width", svgWidth);
-    svg.setAttribute("height", svgHeight);
-    svg.setAttribute("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
-    svg.style.border = "1px solid black";
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    svg.setAttribute("viewBox", `-30 0 ${totalSvgWidth} ${svgHeight}`);
+    svg.setAttribute("preserveAspectRatio", "none");
 
     let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("width", svgWidth);
     rect.setAttribute("height", svgHeight);
+    rect.setAttribute("fill", "lightgray");
+    rect.setAttribute("stroke", "black");
+    rect.setAttribute("stroke-width", "2");
+
 
     svg.appendChild(rect);
+
+    let maxText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    maxText.setAttribute("x", -20);
+    maxText.setAttribute("y", 10);
+    maxText.setAttribute("fill", "black");
+    maxText.setAttribute("font-size", "12px");
+    maxText.setAttribute("text-anchor", "middle");
+    maxText.textContent = maxVisits;
+    svg.appendChild(maxText);
+
+    let minText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    minText.setAttribute("x", -20);
+    minText.setAttribute("y", svgHeight - 5);
+    minText.setAttribute("fill", "black");
+    minText.setAttribute("font-size", "12px");
+    minText.setAttribute("text-anchor", "middle");
+    minText.textContent = minVisits;
+    svg.appendChild(minText);
 }
 
 
@@ -60,22 +84,25 @@ async function initValues() {
     width = height * 3.56;
 
     noOfLogPoints = app_logs.length;
-    
 }
 
-async function generateTransformedValues(){
-    for (let i = 0; i < noOfLogPoints; i++) {
-        console.log(`Index: ${i}`);
-        v = []
-        u = []
+async function generateTransformedValues() {
+    visitsTransformed = [];
+    uniqueVisitsTransformed = [];
 
-        vx = (width/noOfLogPoints) * i
-        vy = maxVisits - visits[i]
+    for (let i = 0; i < noOfLogPoints; i++) {
+        let v = [];
+        let u = [];
+
+        let vx = (width / (noOfLogPoints - 1)) * i;
+        let ux = (width / (noOfLogPoints - 1)) * i;
+
+        let vy = height - ((visits[i] - minVisits) / (maxVisits - minVisits) * height);
+        let uy = height - ((uniqueVisits[i] - minVisits) / (maxVisits - minVisits) * height);
+
         v.push(vx);
         v.push(vy);
 
-        ux = (width/noOfLogPoints) * i
-        uy = maxVisits - uniqueVisits[i]
         u.push(ux);
         u.push(uy);
 
@@ -90,45 +117,44 @@ async function generateGraph() {
     await generateTransformedValues();
     createSVGBase();
 
-    // let points = [
-    //     [10, 10],
-    //     [50, 100],
-    //     [90, 50],
-    //     [130, 150],
-    //     [170, 80]
-    // ];
+    // Dynamically set the first and last date in the HTML
+    document.getElementById("start-date").textContent = dates[0]; // First date
+    document.getElementById("end-date").textContent = dates[dates.length - 1]; // Last date
 
-    // Convert the points array to a string for the polyline
     let visitsPointsString = visitsTransformed.map(point => point.join(",")).join(" ");
-    // Convert the points array to a string for the polyline
     let uniqueVisitsPointsString = uniqueVisitsTransformed.map(point => point.join(",")).join(" ");
 
-    // Create the polyline element
     let visitsPolyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
     visitsPolyline.setAttribute("points", visitsPointsString);
-    visitsPolyline.setAttribute("fill", "none"); // No fill
-    visitsPolyline.setAttribute("stroke", "blue"); // Stroke color for the line
-    visitsPolyline.setAttribute("stroke-width", "2"); // Line width
+    visitsPolyline.setAttribute("fill", "none");
+    visitsPolyline.setAttribute("stroke", "red");
+    visitsPolyline.setAttribute("stroke-width", "2");
 
-    
-    // Create the polyline element
     let uniqueVisitsPolyline = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
     uniqueVisitsPolyline.setAttribute("points", uniqueVisitsPointsString);
-    uniqueVisitsPolyline.setAttribute("fill", "none"); // No fill
-    uniqueVisitsPolyline.setAttribute("stroke", "blue"); // Stroke color for the line
-    uniqueVisitsPolyline.setAttribute("stroke-width", "2"); // Line width
+    uniqueVisitsPolyline.setAttribute("fill", "none");
+    uniqueVisitsPolyline.setAttribute("stroke", "green");
+    uniqueVisitsPolyline.setAttribute("stroke-width", "2");
 
-    // Append the polyline to the SVG
     svg.appendChild(visitsPolyline);
     svg.appendChild(uniqueVisitsPolyline);
 
-    // Append the SVG to the body (or any container in your HTML)
-    document.body.appendChild(svg);
+    const graphContainer = document.getElementById("graph-container");
+    graphContainer.appendChild(svg);
 
-
-    console.log(visitsTransformed);
-    console.log(uniqueVisitsTransformed);
+    // Optional: Set the dynamic data points text for debugging or display
+    document.getElementById("visit-data-points").textContent = visits.join(", ")
+    document.getElementById("unique-data-points").textContent = uniqueVisits.join(", ");
 }
 
+
+
+window.addEventListener("resize", async function() {
+    if (svg) {
+        document.body.removeChild(svg);
+    }
+
+    await generateGraph();
+});
 
 generateGraph();
