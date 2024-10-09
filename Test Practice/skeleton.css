@@ -112,9 +112,6 @@ body {
   
     .sidebar-logo {
       font-size: 1rem;
-    }
-
-    .sidebar-logo {
       justify-content: center;
     }
 
@@ -139,6 +136,11 @@ body {
     .link-symbol {
       margin-right: 0;
       font-size: 3vw;
+    }
+
+    .main-content {
+      display: flex;
+      margin-left: 80px;
     }
 
 }
