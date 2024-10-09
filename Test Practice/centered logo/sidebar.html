@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimal SPA with Logo</title>
+    <title>Minimal SPA with Login</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer="defer"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-
 
     <!-- NAVIGATION BAR -->
     <nav>
@@ -16,25 +15,33 @@
             <img src="logo.png" alt="Logo" class="logo">
             <a href="#" onclick="navigate('home')">Home</a>
             <a href="#" onclick="navigate('about')">About</a>
+            <a href="#" id="login-logout" onclick="toggleLogin()">Login</a>
         </div>
     </nav>
 
-
-
-    <!-- MAIN  -->
-
+    <!-- MAIN -->
     <main>
         <section id="home" class="page">
-            <div class="home-content">
-                <img src="logo.png" style="height: 45vh;" />
-                <h1>NZSL</h1>
-            </div>
+            <h1>Home Page</h1>
         </section>
 
-        <section id="about" class="page" style="display:none;">About Us Page</section>
+        <section id="about" class="page" style="display:none;">
+            <h1>About Us Page</h1>
+        </section>
+
+        <section id="login" class="page" style="display:none;">
+            <div id="login-form">
+                <input type="text" id="username" placeholder="Username" required><br>
+                <input type="password" id="password" placeholder="Password" required><br>
+                <button onclick="login()">Login</button>
+            </div>
+            <div id="welcome-message" style="display:none;">
+                <h2>Welcome, <span id="user"></span>!</h2>
+                <button onclick="logout()">Logout</button>
+            </div>
+            <p id="login-message"></p>
+        </section>
     </main>
-
-
 
 </body>
 </html>
