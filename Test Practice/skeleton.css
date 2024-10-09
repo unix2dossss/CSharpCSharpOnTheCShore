@@ -1,3 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+
+
+
+
+/* SIDEBAR */
+
 .sidebar {
     position: fixed;
     height: 100vh;
@@ -55,6 +71,37 @@
   .link-symbol {
     margin-right: 10px;
   }
+
+
+
+
+  /* MAIN CONTENT */
+
+
+  .main-content {
+    display: flex;
+    padding: 20px;
+    margin-left: 350px;
+    width: 100%;
+    height: 100vh;
+    background-color: #f9f9f9;
+  }
+
+
+  .page-headings h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+
+
+
+
+
+
+
+
 
 
   @media (max-width: 1000px) {
