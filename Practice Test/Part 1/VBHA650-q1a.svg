@@ -1,7 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
-    <defs>
-    </defs>
-    <circle cx="200" cy="100" r="90" fill="red" offset="2"/>
-    <ellipse cx="200" cy="482" rx="178" ry="300" fill="red" stroke="yellow" stroke-width="30"/>
-    <circle cx="200" cy="100" r="100" fill="blue" stroke-width="35" stroke="red" offset="1"/>
+    
+    <mask id="myMask">
+        <!-- Everything under a white pixel will be visible -->
+        <rect x="0" y="0" width="400" height="500" fill="white" />
+
+        <!-- Everything under a black pixel will be invisible -->
+            <ellipse cx="200" cy="170" rx="65" ry="30" fill="black" stroke="black" stroke-width="37"/>
+            <ellipse cx="200" cy="482" rx="149" ry="270" stroke="black" stroke-width="30"/>
+    </mask>
+
+
+    <circle cx="200" cy="100" r="90" fill="black" offset="2"/>
+    <g mask="url(#myMask)">
+        <ellipse cx="200" cy="482" rx="178" ry="300" stroke="black" stroke-width="30"/>
+    </g>
 </svg>
