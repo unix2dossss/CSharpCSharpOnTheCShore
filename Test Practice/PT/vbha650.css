@@ -168,6 +168,21 @@ nav {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+  
+  #register-button, #login-button {
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #register-button:hover, #login-button:hover {
+    background-color: #555;
+  }
 
 
 /* Responsive */

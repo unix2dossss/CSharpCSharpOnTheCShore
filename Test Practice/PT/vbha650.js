@@ -256,3 +256,65 @@ async function postComment() {
       alert("Please write a comment before posting.");
   }
 }
+
+
+const registerForm = document.getElementById('registration-form');
+  const registerMessage = document.getElementById('register-message');
+  const nameInput = document.getElementById('register_name');
+  const passwordInput = document.getElementById('register_password');
+  const addressInput = document.getElementsByName('register_address')[0];
+
+  async function handleRegister(event) {
+      event.preventDefault();
+
+      registerMessage.textContent = "";
+
+      const username = nameInput.value.trim();
+      const password = passwordInput.value.trim();
+      const address = addressInput.value.trim();
+
+      if (!username || !password || !address) {
+          registerMessage.textContent = "Please fill in all the fields.";
+          registerMessage.style.color = "red"; // Set error message color
+          return;
+      }
+
+      const requestData = {
+          username: username,
+          password: password,
+          address: address
+      };
+
+      try {
+          const response = await fetch('https://cws.auckland.ac.nz/nzsl/api/Register', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(requestData)
+          });
+
+          const result = await response.text();
+
+          if (response.ok) {
+              if (result.includes("registered")) {
+                  registerMessage.textContent = result;
+                  registerMessage.style.color = "green";
+                  registerForm.reset();
+              } else {
+                  registerMessage.textContent = result;
+                  registerMessage.style.color = "red";
+              }
+          } else {
+              registerMessage.textContent = "Something went wrong. Please try again.";
+              registerMessage.style.color = "red";
+          }
+      } catch (error) {
+          console.error("Error during registration:", error);
+          registerMessage.textContent = "An error occurred. Please try again.";
+          registerMessage.style.color = "red";
+      }
+  }
+
+
+registerForm.addEventListener('submit', handleRegister);
