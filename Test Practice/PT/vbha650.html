@@ -14,6 +14,7 @@
       <div class="navbar">
         <img src="logo.png" alt="Logo" class="logo" />
         <a href="#" onclick="navigate('home')">Daily Case Data</a>
+        <a href="#" onclick="navigate('extendtable')">Odatalink</a>
         <a href="#" onclick="navigate('about')">Infographics</a>
         <a href="#" onclick="navigate('about')">Statistician of the moment</a>
         <a href="#" id="login-logout" onclick="toggleLogin()">Login</a>
@@ -39,6 +40,26 @@
                         <!-- Data will be populated here -->
                     </tbody>
                 </table>
+            </div>
+        </div>
+      </section>
+
+      <section id="extendtable" class="page">
+        <div class="home-content">
+            <div>
+                <h1>Daily Case Data</h1></br>
+            </div>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Destination</th>
+                  </tr>
+                </thead>
+                <tbody id="odata_table">
+                </tbody>
+              </table>
             </div>
         </div>
       </section>

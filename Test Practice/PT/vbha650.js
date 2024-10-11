@@ -82,3 +82,60 @@ async function init() {
 }
 
 init();
+
+
+
+
+
+// ODATA LINK TABLE:
+
+// https://services.odata.org/Northwind/Northwind.svc/
+const baseUrl = "URL";
+
+async function GetData(url) {
+let allData = [];
+while (url) {
+    const response = await fetch(url, {
+    headers: {
+        Accept: "application/json",
+    },
+    });
+
+    if (!response.ok) {
+    console.error("Failed to fetch data:", response.status, response.statusText);
+    break;
+    }
+
+    const text = await response.json();
+    const data = text.value;
+    allData = allData.concat(data);
+
+    url = text["odata.nextLink"]
+    ? baseUrl + text["odata.nextLink"] + "&$format=json"
+    : null;
+}
+return allData;
+}
+
+async function PopulateTable() {
+const initialUrl = baseUrl + "Orders?$format=json";
+const dataOut = await GetData(initialUrl);
+const table = document.getElementById("odata_table");
+
+dataOut.forEach((order, index) => {
+    const row = document.createElement("tr");
+    row.style.backgroundColor = index % 2 === 0 ? "lightblue" : "lightgray";
+
+    const orderIdCell = document.createElement("td");
+    orderIdCell.textContent = order.OrderID;
+    row.appendChild(orderIdCell);
+
+    const destinationCell = document.createElement("td");
+    destinationCell.textContent = `${order.ShipName}, ${order.ShipAddress}, ${order.ShipCity}, ${order.ShipPostalCode}, ${order.ShipCountry}`;
+    row.appendChild(destinationCell);
+
+    table.appendChild(row);
+});
+}
+
+PopulateTable();
