@@ -200,3 +200,59 @@ searchBar.addEventListener("input", function () {
     const query = searchBar.value.trim();
     fetchSigns(query);
 });
+
+
+const postCommentButton = document.getElementById('post-comment-button');
+const commentMessage = document.getElementById('comment-message');
+
+
+  postCommentButton.addEventListener("click", function () {
+      if (!storedUsername || !storedPassword) {
+          commentMessage.textContent = "Please login to post a comment!";
+          commentMessage.style.color = "orange";
+          showSection("#user-login");
+          setActiveLink(document.querySelector('a[href="#user-login"]'));
+      } else {
+          postComment();
+      }
+  });
+
+async function postComment() {
+  const commentInput = document.getElementById('comment-input').value.trim();
+
+  if (commentInput) {
+      const authHeader = `Basic ${btoa(`${storedUsername}:${storedPassword}`)}`;
+
+      try {
+          const url = `https://cws.auckland.ac.nz/nzsl/api/Comment?comment=${encodeURIComponent(commentInput)}`;
+
+          const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Authorization': authHeader,
+                  'Accept': 'text/plain'
+              }
+          });
+
+          const result = await response.text();
+          commentMessage.textContent = "";
+
+
+          if (response.ok) {
+              document.getElementById('comment-input').value = '';
+              const commentiframe = document.getElementById('comments-iframe');
+              commentiframe.src = commentiframe.src;
+              commentMessage.textContent = "Your comment has been posted!";
+              commentMessage.style.color = "green";
+          } else {
+              commentMessage.textContent = "Failed to post comment. Please try again!";
+              commentMessage.style.color = "red";
+          }
+      } catch (error) {
+          console.error("Error posting comment:", error);
+          alert("An error occurred while posting your comment. Please try again.");
+      }
+  } else {
+      alert("Please write a comment before posting.");
+  }
+}

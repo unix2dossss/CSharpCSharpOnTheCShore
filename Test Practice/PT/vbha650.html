@@ -16,6 +16,7 @@
         <a href="#" onclick="navigate('home')">Daily Case Data</a>
         <a href="#" onclick="navigate('extendtable')">Odatalink</a>
         <a href="#" onclick="navigate('about')">search grid</a>
+        <a href="#" onclick="navigate('guestbook')">comment</a>
         <a href="#" id="login-logout" onclick="toggleLogin()">Login</a>
       </div>
     </nav>
@@ -74,7 +75,29 @@
               <div class="grid-container" id="sign-results">
               </div>
           </div>
-      </div>
+        </div>
+      </section>
+
+      <section id="guestbook" class="page" style="display: none">
+        <div class="guest-book-content">
+          <div class="page-headings">
+              <h3>Guest Book</h3>
+          </div>
+          <div class="guest-book-container">
+              <textarea id="comment-input" placeholder="Write your comment..." rows="4"></textarea>
+              <p id="comment-message" style="color: red; margin-bottom: 15px;"></p>
+              <button id="post-comment-button">Post Comment</button>
+
+              <div class="recent-comments">
+                  <h3>Recent Comments</h3>
+                  <div class="comment-card">
+                      <div class="comment-details">
+                          <iframe id="comments-iframe" src="https://cws.auckland.ac.nz/nzsl/api/Comments" frameborder="0"></iframe>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
       </section>
 
       

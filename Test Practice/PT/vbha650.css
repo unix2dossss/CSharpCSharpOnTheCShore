@@ -106,6 +106,70 @@ nav {
 }
 
 
+.guest-book-content {
+    width: 100%;
+  }
+
+  #comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    resize: none;
+  }
+
+  #comment-input:focus {
+    outline: none;
+    border-color: #333;
+    background-color: #eaeaea;
+  }
+
+  #comment-input::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #post-comment-button {
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #post-comment-button:hover {
+    background-color: #555;
+  }
+
+  .recent-comments {
+    margin-top: 20px;
+  }
+
+  .recent-comments h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  #comments-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  #comments-list li {
+    padding: 10px;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+
 /* Responsive */
 @media (max-width: 1000px) {
     .navbar {
