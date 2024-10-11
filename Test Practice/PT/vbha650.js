@@ -52,3 +52,33 @@ const toggleLogin = () => (localStorage.getItem('loggedInUser') ? logout() : nav
 
 // Initialize login state
 updateLoginState();
+
+
+// 
+
+
+async function fetchVersion() {
+    // https://cws.auckland.ac.nz/Qz2021JGC/api/Version
+    const response = await fetch('URL');
+    const data = await response.json();
+    document.getElementById('version').textContent = 'Version: ' + data;
+}
+
+async function fetchCaseData() {
+    // https://cws.auckland.ac.nz/Qz2021JGC/api/CaseCounts
+    const response = await fetch('URL');
+    const data = await response.json();
+    const tbody = document.getElementById('case-data');
+    Object.entries(data).forEach(([date, caseCount]) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${date}</td><td>${caseCount}</td>`;
+        tbody.appendChild(row);
+    });
+}
+
+async function init() {
+    await fetchVersion();
+    await fetchCaseData();
+}
+
+init();

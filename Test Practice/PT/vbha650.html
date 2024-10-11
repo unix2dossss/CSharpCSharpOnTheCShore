@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMPSCI335</title>
+    <link rel="stylesheet" href="vbha650.css" />
+    <script src="vbha650.js" defer></script>
+    <link rel="icon" href="https://cws.auckland.ac.nz/Qz2021JGC/logo192.png" />
+  </head>
+  <body>
+    <!-- NAVIGATION BAR -->
+    <nav>
+      <div class="navbar">
+        <img src="logo.png" alt="Logo" class="logo" />
+        <a href="#" onclick="navigate('home')">Daily Case Data</a>
+        <a href="#" onclick="navigate('about')">Infographics</a>
+        <a href="#" onclick="navigate('about')">Statistician of the moment</a>
+        <a href="#" id="login-logout" onclick="toggleLogin()">Login</a>
+      </div>
+    </nav>
+    <!-- MAIN -->
+    <main>
+      <section id="home" class="page">
+        <div class="home-content">
+            <div>
+                <h1>Daily Case Data</h1></br>
+            </div>
+            <div>
+                <p id="version"></p>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Case Count</th>
+                        </tr>
+                    </thead>
+                    <tbody id="case-data">
+                        <!-- Data will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </section>
+
+      <section id="about" class="page" style="display: none">
+        <h1>About Us Page</h1>
+      </section>
+      <section id="login" class="page" style="display: none">
+        <div id="login-form">
+          <input
+            type="text"
+            id="username"
+            placeholder="Username"
+            required
+          /><br />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          /><br />
+          <button onclick="login()">Login</button>
+        </div>
+        <div id="welcome-message" style="display: none">
+          <h2>Welcome, <span id="user"></span>!</h2>
+          <button onclick="logout()">Logout</button>
+        </div>
+        <p id="login-message"></p>
+      </section>
+    </main>
+  </body>
+</html>
