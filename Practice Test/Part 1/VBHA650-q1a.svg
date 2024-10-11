@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+    <defs>
+    </defs>
+    <circle cx="200" cy="100" r="90" fill="red" offset="2"/>
+    <ellipse cx="200" cy="482" rx="178" ry="300" fill="red" stroke="yellow" stroke-width="30"/>
+    <circle cx="200" cy="100" r="100" fill="blue" stroke-width="35" stroke="red" offset="1"/>
+</svg>
