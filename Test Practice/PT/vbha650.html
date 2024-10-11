@@ -15,8 +15,7 @@
         <img src="logo.png" alt="Logo" class="logo" />
         <a href="#" onclick="navigate('home')">Daily Case Data</a>
         <a href="#" onclick="navigate('extendtable')">Odatalink</a>
-        <a href="#" onclick="navigate('about')">Infographics</a>
-        <a href="#" onclick="navigate('about')">Statistician of the moment</a>
+        <a href="#" onclick="navigate('about')">search grid</a>
         <a href="#" id="login-logout" onclick="toggleLogin()">Login</a>
       </div>
     </nav>
@@ -66,7 +65,19 @@
 
       <section id="about" class="page" style="display: none">
         <h1>About Us Page</h1>
+        <div class="nzsl-content">
+          <div class="page-headings">
+              <h3>NZSL</h3>
+          </div>
+          <div class="nzsl-container">
+              <input type="text" id="nzsl-search-bar" placeholder="Search NZSL...">
+              <div class="grid-container" id="sign-results">
+              </div>
+          </div>
+      </div>
       </section>
+
+      
       <section id="login" class="page" style="display: none">
         <div id="login-form">
           <input

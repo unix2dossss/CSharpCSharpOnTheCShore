@@ -54,9 +54,6 @@ const toggleLogin = () => (localStorage.getItem('loggedInUser') ? logout() : nav
 updateLoginState();
 
 
-// 
-
-
 async function fetchVersion() {
     // https://cws.auckland.ac.nz/Qz2021JGC/api/Version
     const response = await fetch('URL');
@@ -139,3 +136,67 @@ dataOut.forEach((order, index) => {
 }
 
 PopulateTable();
+
+
+const searchBar = document.getElementById("nzsl-search-bar");
+const resultsContainer = document.getElementById("sign-results");
+
+async function createGridItem(sign) {
+  const gridItem = document.createElement("div");
+  gridItem.classList.add("grid-item");
+
+  const image = document.createElement("img");
+  try {
+    const imageUrl = `https://cws.auckland.ac.nz/nzsl/api/SignImage/${sign.id}`;
+    const imageResponse = await fetch(imageUrl);
+
+    if (imageResponse.ok) {
+      image.src = imageUrl;
+      image.alt = `Sign for ${sign.description}`;
+    } else {
+      image.src = "https://i.ibb.co/Hq9s35p/98196f62-00aa-4cfb-a0e2-1c48d17cef65.png";
+      image.alt = "Image not available";
+    }
+  } catch (error) {
+    console.error("Error fetching image:", error);
+    image.src = "https://i.ibb.co/Hq9s35p/98196f62-00aa-4cfb-a0e2-1c48d17cef65.png";
+    image.alt = "Image not available";
+  }
+  image.classList.add("grid-img");
+
+  const description = document.createElement("p");
+  description.textContent = sign.description;
+
+  gridItem.appendChild(image);
+  gridItem.appendChild(description);
+
+  return gridItem;
+}
+
+async function fetchSigns(query = "") {
+  let apiUrl = `https://cws.auckland.ac.nz/nzsl/api/Signs/${query}`;
+
+  if (query.length === 0) {
+    apiUrl = `https://cws.auckland.ac.nz/nzsl/api/AllSigns`;
+  }
+
+  try {
+    const response = await fetch(apiUrl);
+    const signs = await response.json();
+    resultsContainer.innerHTML = "";
+
+    for (const sign of signs) {
+      const gridItem = await createGridItem(sign);
+      resultsContainer.appendChild(gridItem);
+    }
+  } catch (error) {
+    console.error("Error fetching signs:", error);
+  }
+}
+
+fetchSigns();
+
+searchBar.addEventListener("input", function () {
+    const query = searchBar.value.trim();
+    fetchSigns(query);
+});

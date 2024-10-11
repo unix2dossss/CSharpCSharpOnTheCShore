@@ -55,6 +55,57 @@ nav {
     margin: 0;
 }
 
+/* NZSL */
+.nzsl-content {
+    width: 100%;
+  }
+
+  #nzsl-search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    color: #333;
+  }
+
+  #nzsl-search-bar::placeholder {
+    color: #888;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #nzsl-search-bar:focus {
+    outline: none;
+    border-color: #333;
+    background-color: #eaeaea;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .grid-item {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .grid-img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+    max-height: 200px;
+}
+
+
 /* Responsive */
 @media (max-width: 1000px) {
     .navbar {
