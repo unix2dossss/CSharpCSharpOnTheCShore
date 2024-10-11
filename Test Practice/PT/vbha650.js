@@ -14,8 +14,9 @@ const login = async () => {
         document.getElementById('password').value
     ];
 
+    // https://cws.auckland.ac.nz/nzsl/api/TestAuth
     try {
-        const response = await fetch('https://cws.auckland.ac.nz/nzsl/api/TestAuth', {
+        const response = await fetch('URL', {
             method: 'GET',
             headers: { 'Authorization': `Basic ${btoa(`${username}:${password}`)}` }
         });
@@ -147,19 +148,16 @@ async function createGridItem(sign) {
 
   const image = document.createElement("img");
   try {
-    const imageUrl = `https://cws.auckland.ac.nz/nzsl/api/SignImage/${sign.id}`;
+    // https://cws.auckland.ac.nz/nzsl/api/SignImage/${sign.id}
+    const imageUrl = `URL`;
     const imageResponse = await fetch(imageUrl);
 
     if (imageResponse.ok) {
       image.src = imageUrl;
       image.alt = `Sign for ${sign.description}`;
-    } else {
-      image.src = "https://i.ibb.co/Hq9s35p/98196f62-00aa-4cfb-a0e2-1c48d17cef65.png";
-      image.alt = "Image not available";
     }
   } catch (error) {
     console.error("Error fetching image:", error);
-    image.src = "https://i.ibb.co/Hq9s35p/98196f62-00aa-4cfb-a0e2-1c48d17cef65.png";
     image.alt = "Image not available";
   }
   image.classList.add("grid-img");
@@ -174,10 +172,12 @@ async function createGridItem(sign) {
 }
 
 async function fetchSigns(query = "") {
-  let apiUrl = `https://cws.auckland.ac.nz/nzsl/api/Signs/${query}`;
+    // https://cws.auckland.ac.nz/nzsl/api/Signs/${query}
+  let apiUrl = ``;
 
   if (query.length === 0) {
-    apiUrl = `https://cws.auckland.ac.nz/nzsl/api/AllSigns`;
+    // https://cws.auckland.ac.nz/nzsl/api/AllSigns
+    apiUrl = ``;
   }
 
   try {
@@ -224,7 +224,8 @@ async function postComment() {
       const authHeader = `Basic ${btoa(`${storedUsername}:${storedPassword}`)}`;
 
       try {
-          const url = `https://cws.auckland.ac.nz/nzsl/api/Comment?comment=${encodeURIComponent(commentInput)}`;
+        // https://cws.auckland.ac.nz/nzsl/api/Comment?comment=${encodeURIComponent(commentInput)}
+          const url = ``;
 
           const response = await fetch(url, {
               method: 'POST',
@@ -275,7 +276,7 @@ const registerForm = document.getElementById('registration-form');
 
       if (!username || !password || !address) {
           registerMessage.textContent = "Please fill in all the fields.";
-          registerMessage.style.color = "red"; // Set error message color
+          registerMessage.style.color = "red";
           return;
       }
 
@@ -286,7 +287,8 @@ const registerForm = document.getElementById('registration-form');
       };
 
       try {
-          const response = await fetch('https://cws.auckland.ac.nz/nzsl/api/Register', {
+        // https://cws.auckland.ac.nz/nzsl/api/Register
+          const response = await fetch('', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -321,7 +323,8 @@ registerForm.addEventListener('submit', handleRegister);
 
 async function getLogs() {
     try {
-        const response = await fetch("https://cws.auckland.ac.nz/nzsl/api/Log");
+        // https://cws.auckland.ac.nz/nzsl/api/Log
+        const response = await fetch("");
         const logs = await response.json(); 
         return logs;
     } catch (error) {
@@ -352,9 +355,9 @@ async function createSVGBase() {
 
     svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("width", "100%");
-    svg.setAttribute("height", "auto");  // Set height to auto
+    svg.setAttribute("height", "auto");
     svg.setAttribute("viewBox", `-30 0 ${totalSvgWidth} ${svgHeight}`);
-    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");  // Use xMidYMid meet to maintain aspect ratio
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
     let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     rect.setAttribute("width", svgWidth);
@@ -438,9 +441,8 @@ async function generateGraph() {
     await generateTransformedValues();
     createSVGBase();
 
-    // Dynamically set the first and last date in the HTML
-    document.getElementById("start-date").textContent = dates[0]; // First date
-    document.getElementById("end-date").textContent = dates[dates.length - 1]; // Last date
+    document.getElementById("start-date").textContent = dates[0];
+    document.getElementById("end-date").textContent = dates[dates.length - 1];
 
     let visitsPointsString = visitsTransformed.map(point => point.join(",")).join(" ");
     let uniqueVisitsPointsString = uniqueVisitsTransformed.map(point => point.join(",")).join(" ");
@@ -478,3 +480,30 @@ window.addEventListener("resize", async function() {
 });
 
 generateGraph();
+
+
+function DoPost() {
+    const data2send = GetData();
+    // https://www.cws.auckland.ac.nz/AddTwoSvc/Api/SumAuth
+    fetch("URL", {
+       method: "POST",
+       headers:
+       {
+          "Content-Type": "application/json",
+          "Authorization": "Basic dXNlcjMzNTpwYXNzd29yZDMzNQ==",
+       },
+       body: JSON.stringify(data2send)
+    })
+       .then((response) => response.text())
+       .then((result) => {resultData = result; alert(result)});
+ }
+
+ function GetData() {
+    const a = document.getElementById("a");
+    const b = document.getElementById("b");
+    const data2send = {
+       "a": Number(a.value),
+       "b": Number(b.value),
+    };
+    return data2send;
+ }
