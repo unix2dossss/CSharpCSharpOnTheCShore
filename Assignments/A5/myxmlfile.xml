@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<moves xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="vbha650-Schema1.xsd">
+
+    <move>
+        <piece>Kw</piece>
+        <to>e1</to>
+        <from>e1</from>
+    </move>
+
+</moves>
