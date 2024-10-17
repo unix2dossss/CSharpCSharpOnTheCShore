@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="movesType">
+        <xs:sequence>
+            <xs:element name="move" type="moveType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="moveType">
+        <xs:all>
+            <xs:element name="to" type="toType" />
+            <xs:element name="from" type="fromType" />
+        </xs:all>
+        <xs:attribute name="piece" type="pieceType" use="required" />
+    </xs:complexType>
+
+    <xs:simpleType name="pieceType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Kb" />
+            <xs:enumeration value="Qb" />
+            <xs:enumeration value="Rb" />
+            <xs:enumeration value="Bb" />
+            <xs:enumeration value="Nb" />
+            <xs:enumeration value="Pb" />
+            <xs:enumeration value="Kw" />
+            <xs:enumeration value="Qw" />
+            <xs:enumeration value="Rw" />
+            <xs:enumeration value="Bw" />
+            <xs:enumeration value="Nw" />
+            <xs:enumeration value="Pw" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fromType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-h][1-8]" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="toType">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-h][1-8]" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="bin" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:element name="moves" type="movesType" />
+</xs:schema>
